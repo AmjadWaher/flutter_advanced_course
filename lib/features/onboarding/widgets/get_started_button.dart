@@ -11,7 +11,7 @@ class GetStartedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        context.pushNamedAndRemoveUntil(Routes.loginScreen,predicate: (route) => false,);
+        context.pushReplacementNamed(Routes.loginScreen);
       },
       style: TextButton.styleFrom(
         backgroundColor: AppColors.mainBlue,
