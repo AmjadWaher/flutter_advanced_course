@@ -1,5 +1,4 @@
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
-import 'package:completed_flutter_projects/core/themes/app_colors.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
 import 'package:completed_flutter_projects/core/widgets/app_text_button.dart';
 import 'package:completed_flutter_projects/core/widgets/app_text_form_field.dart';
