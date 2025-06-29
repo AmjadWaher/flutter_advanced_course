@@ -1,7 +1,7 @@
 import 'package:completed_flutter_projects/core/di/dependence_injection.dart';
 import 'package:completed_flutter_projects/core/routing/routes.dart';
-import 'package:completed_flutter_projects/features/auth/logic/cubit/login_cubit.dart';
-import 'package:completed_flutter_projects/features/auth/ui/screens/login_screen.dart';
+import 'package:completed_flutter_projects/features/login/logic/cubit/login_cubit.dart';
+import 'package:completed_flutter_projects/features/login/ui/screens/login_screen.dart';
 import 'package:completed_flutter_projects/features/home/ui/home_screen.dart';
 import 'package:completed_flutter_projects/features/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';

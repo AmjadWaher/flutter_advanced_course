@@ -1,8 +1,8 @@
 import 'package:completed_flutter_projects/core/networking/api_result.dart'
     as api_result;
-import 'package:completed_flutter_projects/features/auth/data/models/login_request_body.dart';
-import 'package:completed_flutter_projects/features/auth/data/repository/login_repository.dart';
-import 'package:completed_flutter_projects/features/auth/logic/cubit/login_state.dart';
+import 'package:completed_flutter_projects/features/login/data/models/login_request_body.dart';
+import 'package:completed_flutter_projects/features/login/data/repository/login_repository.dart';
+import 'package:completed_flutter_projects/features/login/logic/cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
