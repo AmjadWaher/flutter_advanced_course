@@ -1,8 +1,8 @@
 import 'package:completed_flutter_projects/core/helpers/app_regex.dart';
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/widgets/app_text_form_field.dart';
-import 'package:completed_flutter_projects/features/auth/logic/cubit/login_cubit.dart';
-import 'package:completed_flutter_projects/features/auth/ui/widgets/password_validations.dart';
+import 'package:completed_flutter_projects/features/login/logic/cubit/login_cubit.dart';
+import 'package:completed_flutter_projects/features/login/ui/widgets/password_validations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
