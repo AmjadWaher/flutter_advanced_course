@@ -2,8 +2,8 @@ import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
 import 'package:completed_flutter_projects/core/widgets/app_text_button.dart';
 import 'package:completed_flutter_projects/core/widgets/app_text_form_field.dart';
-import 'package:completed_flutter_projects/features/auth/ui/widgets/already_have_account_text.dart';
-import 'package:completed_flutter_projects/features/auth/ui/widgets/terms_and_conditions_text.dart';
+import 'package:completed_flutter_projects/features/login/ui/widgets/already_have_account_text.dart';
+import 'package:completed_flutter_projects/features/login/ui/widgets/terms_and_conditions_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
