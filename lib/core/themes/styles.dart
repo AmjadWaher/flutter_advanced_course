@@ -52,13 +52,27 @@ class TextStyles {
     color: AppColors.darkBlue,
   );
 
+  static TextStyle font14MainBlueSemiBold = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: AppColors.mainBlue,
+  );
+
+  // ------------ 15 sp ------------
+
+  static TextStyle font15DarkBlueMedium = TextStyle(
+    fontSize: 15.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: AppColors.darkBlue,
+  );
+
   // ------------ 16 sp ------------
   static TextStyle font16WhiteSemiBold = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.semiBold,
     color: Colors.white,
   );
-  
+
   static TextStyle font16MainBlueSemiBold = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.semiBold,
