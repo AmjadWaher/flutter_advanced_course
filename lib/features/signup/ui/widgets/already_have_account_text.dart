@@ -1,4 +1,7 @@
+import 'package:completed_flutter_projects/core/helpers/extensions.dart';
+import 'package:completed_flutter_projects/core/routing/routes.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class AlreadyHaveAccountText extends StatelessWidget {
@@ -11,12 +14,16 @@ class AlreadyHaveAccountText extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: 'Already have an account? ',
+            text: 'Already have an account yet? ',
             style: TextStyles.font14DarkBlueRegular,
           ),
           TextSpan(
-            text: 'Sign Up',
+            text: 'Login ',
             style: TextStyles.font16MainBlueSemiBold,
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                context.pop();
+              },
           ),
         ],
       ),

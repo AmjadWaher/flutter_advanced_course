@@ -3,8 +3,8 @@ import 'package:completed_flutter_projects/core/helpers/extensions.dart';
 import 'package:completed_flutter_projects/core/routing/routes.dart';
 import 'package:completed_flutter_projects/core/themes/app_colors.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
-import 'package:completed_flutter_projects/features/auth/logic/cubit/login_cubit.dart';
-import 'package:completed_flutter_projects/features/auth/logic/cubit/login_state.dart';
+import 'package:completed_flutter_projects/features/login/logic/cubit/login_cubit.dart';
+import 'package:completed_flutter_projects/features/login/logic/cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
