@@ -1,9 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    user-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="completed_flutter_projects"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:theme="@style/Theme.AppSplash"
+        android:usesCleartextTraffic="true"
         >
         <activity
             android:name=".MainActivity"

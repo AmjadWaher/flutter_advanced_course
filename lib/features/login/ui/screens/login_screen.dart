@@ -1,6 +1,7 @@
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
 import 'package:completed_flutter_projects/core/widgets/app_text_button.dart';
+
 import 'package:completed_flutter_projects/core/widgets/app_text_form_field.dart';
 import 'package:completed_flutter_projects/features/login/ui/widgets/already_have_account_text.dart';
 import 'package:completed_flutter_projects/features/login/ui/widgets/terms_and_conditions_text.dart';
@@ -23,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
+
           padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 50.h),
           child: SingleChildScrollView(
             child: Column(
