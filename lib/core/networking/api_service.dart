@@ -1,8 +1,10 @@
 import 'package:completed_flutter_projects/core/networking/api_constants.dart';
 import 'package:completed_flutter_projects/features/login/data/models/login_request_body.dart';
 import 'package:completed_flutter_projects/features/login/data/models/login_response.dart';
+
 import 'package:completed_flutter_projects/features/signup/data/models/sign_up_request_body.dart';
 import 'package:completed_flutter_projects/features/signup/data/models/sign_up_response.dart';
+
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 part 'api_service.g.dart';

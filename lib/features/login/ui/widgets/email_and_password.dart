@@ -2,6 +2,7 @@ import 'package:completed_flutter_projects/core/helpers/app_regex.dart';
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/widgets/app_text_form_field.dart';
 import 'package:completed_flutter_projects/features/login/logic/cubit/login_cubit.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,6 +16,7 @@ class EmailAndPassword extends StatefulWidget {
 class _EmailAndPasswordState extends State<EmailAndPassword> {
   bool isVisible = true;
   late TextEditingController passwordController;
+
 
   @override
   void initState() {
@@ -65,6 +67,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
               return null;
             },
           ),
+
         ],
       ),
     );

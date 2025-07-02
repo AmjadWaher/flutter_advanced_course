@@ -1,8 +1,10 @@
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
 import 'package:completed_flutter_projects/core/widgets/app_text_button.dart';
+
 import 'package:completed_flutter_projects/features/login/logic/cubit/login_cubit.dart';
 import 'package:completed_flutter_projects/features/login/ui/widgets/dont_have_account_text.dart';
+
 import 'package:completed_flutter_projects/features/login/ui/widgets/email_and_password.dart';
 import 'package:completed_flutter_projects/features/login/ui/widgets/login_bloc_listener.dart';
 import 'package:completed_flutter_projects/features/login/ui/widgets/terms_and_conditions_text.dart';
@@ -19,6 +21,7 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 50.h),
+
           child: Align(
             alignment: AlignmentDirectional.center,
             child: SingleChildScrollView(
@@ -73,6 +76,7 @@ class LoginScreen extends StatelessWidget {
   void validateThenDoLogin(BuildContext context) {
     if (context.read<LoginCubit>().formKey.currentState!.validate()) {
       context.read<LoginCubit>().emitLoginStates();
+
     }
   }
 }

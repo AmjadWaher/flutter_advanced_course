@@ -23,6 +23,7 @@ class LoginCubit extends Cubit<LoginState> {
       ),
     );
 
+
     switch (response) {
       case api_result.Success(:final data):
         emit(LoginState.success(data));
