@@ -58,6 +58,12 @@ class TextStyles {
     color: AppColors.mainBlue,
   );
 
+  static TextStyle font14WhiteRegular = TextStyle(
+    fontSize: 14.sp,
+    color: Colors.white,
+    fontWeight: FontWeightHelper.regular,
+  );
+
   // ------------ 15 sp ------------
 
   static TextStyle font15DarkBlueMedium = TextStyle(
@@ -77,6 +83,13 @@ class TextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.semiBold,
     color: AppColors.mainBlue,
+  );
+
+  // ------------ 17 sp ------------
+  static TextStyle font17WhiteSemiBold = TextStyle(
+    fontSize: 17.sp,
+    color: Colors.white,
+    fontWeight: FontWeightHelper.semiBold,
   );
 
   // ------------ 24 sp ------------

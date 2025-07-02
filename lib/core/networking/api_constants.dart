@@ -1,6 +1,7 @@
 class ApiConstants{
   static const String baseUrl = 'https://10.0.2.2:7182/api/';
   static const String login = 'Account/login';
+  static const String signup = 'Account/register';
 
 }
 
