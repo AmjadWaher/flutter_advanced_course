@@ -14,8 +14,12 @@ Future<void> setUpGetIt() async {
 
   // login
   getIt.registerLazySingleton<LoginRepository>(() => LoginRepository(getIt()));
-  getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt()));
+  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
+
+  // signup
+  getIt
+      .registerLazySingleton<SignUpRepository>(() => SignUpRepository(getIt()));
+  getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
 
   // home
-  
 }
