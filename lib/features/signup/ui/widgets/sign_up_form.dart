@@ -1,5 +1,4 @@
 import 'package:completed_flutter_projects/core/helpers/app_regex.dart';
-import 'package:completed_flutter_projects/core/helpers/snack_bar.dart';
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/widgets/app_text_form_field.dart';
 import 'package:completed_flutter_projects/features/signup/ui/widgets/password_validations.dart';
