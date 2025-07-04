@@ -1,3 +1,4 @@
+import 'package:completed_flutter_projects/features/home/ui/widgets/home_top_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,10 +7,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(
-          'Home Screen',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      body: SafeArea(
+        child: Container(
+          width: double.infinity,
+          margin: const EdgeInsets.fromLTRB(16, 12.0, 16, 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const HomeTopBar(),
+            ],
+          ),
         ),
       ),
     );

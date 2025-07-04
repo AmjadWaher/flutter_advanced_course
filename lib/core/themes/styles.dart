@@ -92,6 +92,13 @@ class TextStyles {
     fontWeight: FontWeightHelper.semiBold,
   );
 
+  // ------------ 18 sp ------------
+  static TextStyle font18DarkBlueBold = TextStyle(
+    fontSize: 18.sp,
+    color: AppColors.darkBlue,
+    fontWeight: FontWeightHelper.bold,
+  );
+
   // ------------ 24 sp ------------
 
   static TextStyle font24BlackBold = TextStyle(

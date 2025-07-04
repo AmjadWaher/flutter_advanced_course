@@ -2,7 +2,6 @@ import 'package:completed_flutter_projects/core/helpers/extensions.dart';
 import 'package:completed_flutter_projects/core/helpers/snack_bar.dart';
 import 'package:completed_flutter_projects/core/routing/routes.dart';
 import 'package:completed_flutter_projects/core/themes/app_colors.dart';
-import 'package:completed_flutter_projects/core/themes/styles.dart';
 import 'package:completed_flutter_projects/features/signup/data/models/sign_up_response.dart';
 import 'package:completed_flutter_projects/features/signup/logic/cubit/sign_up_cubit.dart';
 import 'package:completed_flutter_projects/features/signup/logic/cubit/sign_up_state.dart';

@@ -1,5 +1,4 @@
 import 'package:completed_flutter_projects/core/helpers/app_regex.dart';
-import 'package:completed_flutter_projects/core/helpers/snack_bar.dart';
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/widgets/app_text_form_field.dart';
 import 'package:completed_flutter_projects/features/signup/ui/widgets/password_validations.dart';
@@ -65,7 +64,7 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
-          verticalSpace(10),
+          verticalSpace(7),
           AppTextFormField(
             controller: context.read<SignUpCubit>().emailController,
             hintText: 'Email',
@@ -78,7 +77,7 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
-          verticalSpace(10),
+          verticalSpace(7),
           AppTextFormField(
             controller: context.read<SignUpCubit>().phoneController,
             hintText: 'Your number',
@@ -92,9 +91,9 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
-          verticalSpace(10),
+          verticalSpace(7),
           GenderMenu(),
-          verticalSpace(10),
+          verticalSpace(7),
           AppTextFormField(
             isObscureText: isPasswordVisible,
             controller: context.read<SignUpCubit>().passwordController,
@@ -119,7 +118,7 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
           ),
-          verticalSpace(10),
+          verticalSpace(7),
           AppTextFormField(
             isObscureText: isPasswordConfirmationVisible,
             controller:
@@ -147,7 +146,7 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
           ),
-          verticalSpace(12),
+          verticalSpace(10),
           PasswordValidations(
             hasLowerCase: hasLowerCase,
             hasUpperCase: hasUpperCase,

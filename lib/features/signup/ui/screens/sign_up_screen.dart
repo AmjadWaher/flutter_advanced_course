@@ -34,7 +34,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 verticalSpace(15),
                 SignUpForm(),
-                verticalSpace(20),
+                verticalSpace(15),
                 AppTextButton(
                   buttonText: 'Create Account',
                   textStyle: TextStyles.font16WhiteSemiBold,
@@ -42,11 +42,11 @@ class SignUpScreen extends StatelessWidget {
                     validateThenDoSignUp(context);
                   },
                 ),
-                verticalSpace(20),
+                verticalSpace(15),
                 Column(
                   children: [
                     const TermsAndConditionsText(),
-                    verticalSpace(25),
+                    verticalSpace(15),
                     const AlreadyHaveAccountText(),
                     const SignUpBlocListener(),
                   ],
