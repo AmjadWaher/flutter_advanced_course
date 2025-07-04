@@ -49,7 +49,6 @@ android {
                 type = "string",
                 name = "app_name",
                 value = "DocDoc Production")
-            applicationIdSuffix = ".production"
         }
     }
 }
