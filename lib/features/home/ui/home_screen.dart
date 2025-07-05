@@ -1,3 +1,4 @@
+import 'package:completed_flutter_projects/features/home/ui/widgets/doctor_booking_card.dart';
 import 'package:completed_flutter_projects/features/home/ui/widgets/home_top_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const HomeTopBar(),
+              const DoctorBookingCard(),
             ],
           ),
         ),
