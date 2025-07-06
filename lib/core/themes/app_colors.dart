@@ -8,4 +8,7 @@ class AppColors {
   static const Color lightGray = Color(0xFFEDEDED);
   static const Color silverGray = Color(0xFFC2C2C2);
   static const Color darkBlue = Color(0xFF242424);
+  static const Color whiteSmoke = Color(0xFFF5F5F5);
+  static const Color zircon = Color(0xFFF4F8FF);
+  static const Color rubberDuckyYellow = Color(0xFFFFD600);
 }

@@ -11,6 +11,21 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: AppColors.gray,
   );
+  static TextStyle font12GrayMedium = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: AppColors.gray,
+  );
+  static TextStyle font12MainBlueRegular = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: AppColors.mainBlue,
+  );
+  static TextStyle font12DarkBlueRegular = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: AppColors.darkBlue,
+  );
 
   // ------------ 13 sp ------------
 
@@ -84,11 +99,33 @@ class TextStyles {
     fontWeight: FontWeightHelper.semiBold,
     color: AppColors.mainBlue,
   );
+  static TextStyle font16DarkBlueBold = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: AppColors.darkBlue,
+  );
 
   // ------------ 17 sp ------------
   static TextStyle font17WhiteSemiBold = TextStyle(
     fontSize: 17.sp,
     color: Colors.white,
+    fontWeight: FontWeightHelper.semiBold,
+  );
+
+  // ------------ 18 sp ------------
+  static TextStyle font18DarkBlueBold = TextStyle(
+    fontSize: 18.sp,
+    color: AppColors.darkBlue,
+    fontWeight: FontWeightHelper.bold,
+  );
+  static TextStyle font18WhiteMedium = TextStyle(
+    fontSize: 18.sp,
+    color: Colors.white,
+    fontWeight: FontWeightHelper.medium,
+  );
+  static TextStyle font18DarkBlueSemiBold = TextStyle(
+    fontSize: 18.sp,
+    color: AppColors.darkBlue,
     fontWeight: FontWeightHelper.semiBold,
   );
 

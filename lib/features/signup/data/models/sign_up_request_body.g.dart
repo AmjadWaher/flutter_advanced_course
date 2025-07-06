@@ -26,4 +26,4 @@ Map<String, dynamic> _$SignUpRequestBodyToJson(SignUpRequestBody instance) =>
       'PasswordConfirmation': instance.passwordConfirmation,
     };
 
-const _$GenderEnumMap = {Gender.male: 'Male', Gender.female: 'Female'};
+const _$GenderEnumMap = {Gender.male: 'male', Gender.female: 'female'};
