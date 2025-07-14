@@ -1,5 +1,6 @@
 import 'package:completed_flutter_projects/core/di/dependence_injection.dart';
 import 'package:completed_flutter_projects/core/routing/routes.dart';
+import 'package:completed_flutter_projects/features/home/logic/home_cubit.dart';
 
 import 'package:completed_flutter_projects/features/login/logic/cubit/login_cubit.dart';
 import 'package:completed_flutter_projects/features/login/ui/screens/login_screen.dart';
@@ -38,7 +39,7 @@ class AppRouter {
       case Routes.homeScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => getIt<LoginCubit>(),
+            create: (context) => HomeCubit(getIt())..emitSpecialtiesAndDoctorsStates(),
             child: const HomeScreen(),
           ),
         );
