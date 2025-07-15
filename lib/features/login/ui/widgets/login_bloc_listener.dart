@@ -31,7 +31,7 @@ class LoginBlocListener extends StatelessWidget {
 
           case Success(:final data):
             context.pop();
-            context.pushNamed(Routes.homeScreen);
+            context.pushNamed(Routes.mainHomeScreen);
             break;
 
           case Error(:final message):
