@@ -7,6 +7,7 @@ import 'package:completed_flutter_projects/main_home/widgets/custom_bottom_navig
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MainHomeScreen extends StatefulWidget {
   const MainHomeScreen({super.key});
@@ -80,7 +81,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: Container(
-          height: 72.h,
+          height: 72.h, 
           width: 72.w,
           margin: EdgeInsets.only(top: 25.h),
           child: FloatingActionButton(
@@ -92,7 +93,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               side: BorderSide(width: 8, color: Colors.white),
               borderRadius: BorderRadius.circular(28.r),
             ),
-            child: Icon(Icons.search),
+            child: SvgPicture.asset('assets/svgs/search_normal.svg'),
           ),
         ),
         bottomNavigationBar: CustomBottomNavigationBar(
