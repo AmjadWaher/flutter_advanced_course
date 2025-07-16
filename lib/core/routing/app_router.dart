@@ -9,6 +9,7 @@ import 'package:completed_flutter_projects/features/home/ui/home_screen.dart';
 import 'package:completed_flutter_projects/features/onboarding/onboarding_screen.dart';
 import 'package:completed_flutter_projects/features/signup/logic/cubit/sign_up_cubit.dart';
 import 'package:completed_flutter_projects/features/signup/ui/screens/sign_up_screen.dart';
+import 'package:completed_flutter_projects/main_home/main_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,6 +36,10 @@ class AppRouter {
             create: (context) => getIt<SignUpCubit>(),
             child: const SignUpScreen(),
           ),
+        );
+      case Routes.mainHomeScreen:
+        return MaterialPageRoute(
+          builder: (_) => const MainHomeScreen(),
         );
       case Routes.homeScreen:
         return MaterialPageRoute(

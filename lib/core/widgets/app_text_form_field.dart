@@ -17,6 +17,7 @@ class AppTextFormField extends StatelessWidget {
     this.isObscureText = false,
     this.suffixIcon,
     this.backgroundColor,
+    this.keyboardType,
     this.controller,
     required this.validator,
   });
@@ -29,6 +30,7 @@ class AppTextFormField extends StatelessWidget {
   final bool isObscureText;
   final Widget? suffixIcon;
   final Color? backgroundColor;
+  final TextInputType? keyboardType;
   final TextEditingController? controller;
   final Function(String? value) validator;
 
@@ -80,6 +82,7 @@ class AppTextFormField extends StatelessWidget {
         fillColor: backgroundColor ?? AppColors.paleGray,
         filled: true,
       ),
+      keyboardType: keyboardType,
       style: inputTextStyle ?? TextStyles.font14DarkBlueMedium,
       validator: (value) => validator(value),
     );
