@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:completed_flutter_projects/features/home/data/models/specialty_response.dart';
-import 'package:completed_flutter_projects/features/home/ui/widgets/speciality_card.dart';
+import 'package:completed_flutter_projects/core/widgets/speciality_card.dart';
 
 class DoctorSpecialityListView extends StatelessWidget {
   const DoctorSpecialityListView({
@@ -15,7 +15,7 @@ class DoctorSpecialityListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 120.h,
+      height: 100.h,
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: specialties.length,

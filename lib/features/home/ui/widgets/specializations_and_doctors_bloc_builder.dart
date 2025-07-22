@@ -41,7 +41,7 @@ class SpecializationsAndDoctorsBlocBuilder extends StatelessWidget {
   Widget setupSuccess(Success state) {
     return Column(
       children: [
-        const DoctorSpecialitySeeAllText(),
+        DoctorSpecialitySeeAllText(specialtyList: state.specialtyData),
         DoctorSpecialityListView(specialties: state.specialtyData),
         verticalSpace(10),
         const DoctorSeeAllText(),
