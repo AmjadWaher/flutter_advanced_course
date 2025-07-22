@@ -1,13 +1,15 @@
 import 'package:completed_flutter_projects/core/di/dependence_injection.dart';
 import 'package:completed_flutter_projects/core/routing/routes.dart';
+import 'package:completed_flutter_projects/features/home/data/models/specialty_response.dart';
 
 import 'package:completed_flutter_projects/features/login/logic/cubit/login_cubit.dart';
 import 'package:completed_flutter_projects/features/login/ui/screens/login_screen.dart';
-import 'package:completed_flutter_projects/features/home/ui/home_screen.dart';
 
 import 'package:completed_flutter_projects/features/onboarding/onboarding_screen.dart';
 import 'package:completed_flutter_projects/features/signup/logic/cubit/sign_up_cubit.dart';
 import 'package:completed_flutter_projects/features/signup/ui/screens/sign_up_screen.dart';
+import 'package:completed_flutter_projects/features/specialties/doctor_specialty_screen.dart';
+
 import 'package:completed_flutter_projects/main_home/main_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,11 +42,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const MainHomeScreen(),
         );
-      case Routes.homeScreen:
+      case Routes.doctorSpecialtyScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => getIt<LoginCubit>(),
-            child: const HomeScreen(),
+          builder: (_) => DoctorSpecialtyScreen(
+            specialtyList: arguments as List<Specialty>,
           ),
         );
       default:

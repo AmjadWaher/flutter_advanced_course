@@ -54,6 +54,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           elevation: 0.0,
           foregroundColor: Colors.white,
           backgroundColor: AppColors.mainBlue,
+
           splashColor: Colors.transparent,
           highlightElevation: 0.0,
           focusElevation: 0.0,

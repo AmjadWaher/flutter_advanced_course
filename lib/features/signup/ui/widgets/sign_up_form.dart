@@ -55,6 +55,7 @@ class _SignUpFormState extends State<SignUpForm> {
           AppTextFormField(
             controller: context.read<SignUpCubit>().nameController,
             hintText: 'Username',
+            keyboardType: TextInputType.name,
             validator: (value) {
               if (value == null ||
                   value.isEmpty ||
@@ -68,6 +69,7 @@ class _SignUpFormState extends State<SignUpForm> {
           AppTextFormField(
             controller: context.read<SignUpCubit>().emailController,
             hintText: 'Email',
+            keyboardType: TextInputType.emailAddress,
             validator: (value) {
               if (value == null ||
                   value.isEmpty ||
@@ -81,6 +83,7 @@ class _SignUpFormState extends State<SignUpForm> {
           AppTextFormField(
             controller: context.read<SignUpCubit>().phoneController,
             hintText: 'Your number',
+            keyboardType: TextInputType.phone,
             validator: (value) {
               if (value == null ||
                   value.isEmpty ||
@@ -98,6 +101,7 @@ class _SignUpFormState extends State<SignUpForm> {
             isObscureText: isPasswordVisible,
             controller: context.read<SignUpCubit>().passwordController,
             hintText: 'Password',
+            keyboardType: TextInputType.visiblePassword,
             validator: (value) {
               if (value == null ||
                   value.isEmpty ||
@@ -124,6 +128,7 @@ class _SignUpFormState extends State<SignUpForm> {
             controller:
                 context.read<SignUpCubit>().passwordConfirmationController,
             hintText: 'Confirm Password',
+            keyboardType: TextInputType.visiblePassword,
             validator: (value) {
               if (value == null ||
                   value.isEmpty ||
