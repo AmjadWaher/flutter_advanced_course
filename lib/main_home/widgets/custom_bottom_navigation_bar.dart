@@ -2,6 +2,7 @@ import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int pageIndex;
@@ -22,24 +23,22 @@ class CustomBottomNavigationBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _navigationItem(
-            icon: Icons.home_outlined,
+            icon: 'assets/svgs/home.svg',
             selected: pageIndex == 0,
             onTap: () => onTap(0),
           ),
           _navigationItem(
-            icon: Icons.message_outlined,
+            icon: 'assets/svgs/message.svg',
             selected: pageIndex == 1,
             onTap: () => onTap(1),
           ),
           horizontalSpace(20),
           _navigationItem(
-            icon: Icons.calendar_month_outlined,
+            icon: 'assets/svgs/calender.svg',
             selected: pageIndex == 2,
             onTap: () => onTap(2),
           ),
-          _navigationItem(
-            icon: Icons.person_outline,
-            selected: pageIndex == 3,
+          _navigationProfile(
             onTap: () => onTap(3),
           ),
         ],
@@ -48,15 +47,40 @@ class CustomBottomNavigationBar extends StatelessWidget {
   }
 
   Widget _navigationItem({
-    required IconData icon,
+    required String icon,
     required bool selected,
     required Function()? onTap,
   }) {
     return InkWell(
       onTap: onTap,
-      child: Icon(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      child: SvgPicture.asset(
         icon,
-        color: selected ? AppColors.mainBlue : AppColors.darkBlue,
+        colorFilter: ColorFilter.mode(
+          selected ? AppColors.mainBlue : AppColors.darkBlue,
+          BlendMode.srcIn,
+        ),
+      ),
+    );
+  }
+
+  Widget _navigationProfile({required Function()? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      child: Container(
+        height: 27.h,
+        width: 27.w,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          image: DecorationImage(
+            image: AssetImage(
+              'assets/images/male_face_avatar.png',
+            ),
+          ),
+        ),
       ),
     );
   }
