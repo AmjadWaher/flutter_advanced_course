@@ -1,6 +1,6 @@
 import 'package:completed_flutter_projects/core/widgets/speciality_card.dart';
 import 'package:completed_flutter_projects/features/home/data/models/specialty_response.dart';
-import 'package:completed_flutter_projects/features/specialties/widgets/doctor_specialty_top_bar.dart';
+import 'package:completed_flutter_projects/features/doctor_speciality/widgets/doctor_specialty_top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
