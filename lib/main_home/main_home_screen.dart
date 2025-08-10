@@ -46,14 +46,18 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-        height: 72.h,
-        width: 72.w,
+        height: 70,
+        width: 70,
         margin: EdgeInsets.only(top: 25.h),
         child: FloatingActionButton(
           onPressed: () {},
           elevation: 0.0,
           foregroundColor: Colors.white,
           backgroundColor: AppColors.mainBlue,
+
+          splashColor: Colors.transparent,
+          highlightElevation: 0.0,
+          focusElevation: 0.0,
           shape: RoundedRectangleBorder(
             side: BorderSide(width: 8, color: Colors.white),
             borderRadius: BorderRadius.circular(28.r),
