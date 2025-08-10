@@ -8,7 +8,7 @@ import 'package:completed_flutter_projects/features/login/ui/screens/login_scree
 import 'package:completed_flutter_projects/features/onboarding/onboarding_screen.dart';
 import 'package:completed_flutter_projects/features/signup/logic/cubit/sign_up_cubit.dart';
 import 'package:completed_flutter_projects/features/signup/ui/screens/sign_up_screen.dart';
-import 'package:completed_flutter_projects/features/specialties/doctor_specialty_screen.dart';
+import 'package:completed_flutter_projects/features/doctor_speciality/doctor_specialty_screen.dart';
 import 'package:completed_flutter_projects/main_home/main_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
