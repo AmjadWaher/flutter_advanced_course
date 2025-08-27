@@ -11,4 +11,5 @@ class AppColors {
   static const Color whiteSmoke = Color(0xFFF5F5F5);
   static const Color zircon = Color(0xFFF4F8FF);
   static const Color rubberDuckyYellow = Color(0xFFFFD600);
+  static const Color antiFlashWhite = Color(0xFFF2F4F7);
 }

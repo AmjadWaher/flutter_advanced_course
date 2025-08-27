@@ -4,8 +4,9 @@ import 'package:completed_flutter_projects/core/themes/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DoctorSpecialtyTopBar extends StatelessWidget {
-  const DoctorSpecialtyTopBar({super.key});
+class AppTopBar extends StatelessWidget {
+  const AppTopBar({super.key, required this.title});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class DoctorSpecialtyTopBar extends StatelessWidget {
             _buildBackButton(context),
             Spacer(),
             Text(
-              'Doctor Specialties',
+              title,
               style: TextStyles.font18DarkBlueSemiBold,
             ),
             Spacer(),

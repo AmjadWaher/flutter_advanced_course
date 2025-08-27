@@ -1,5 +1,5 @@
 import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
-import 'package:completed_flutter_projects/features/home/ui/widgets/doctor_card.dart';
+import 'package:completed_flutter_projects/core/widgets/doctor_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

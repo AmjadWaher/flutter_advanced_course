@@ -1,6 +1,6 @@
+import 'package:completed_flutter_projects/core/widgets/app_top_bar.dart';
 import 'package:completed_flutter_projects/core/widgets/speciality_card.dart';
 import 'package:completed_flutter_projects/features/home/data/models/specialty_response.dart';
-import 'package:completed_flutter_projects/features/doctor_speciality/widgets/doctor_specialty_top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,7 +14,7 @@ class DoctorSpecialtyScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const DoctorSpecialtyTopBar(),
+            const AppTopBar(title: 'Doctor Speciality'),
             GridView.builder(
               padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 16.h),
               shrinkWrap: true,

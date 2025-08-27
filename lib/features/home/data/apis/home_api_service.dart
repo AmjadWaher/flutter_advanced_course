@@ -16,8 +16,4 @@ abstract class HomeApiService {
 
   @GET(HomeApiConstants.doctors)
   Future<DoctorResponse> getAllDoctors();
-
-  @GET(HomeApiConstants.doctorBySpecialtyId)
-  Future<DoctorResponse> getAllDoctorsBySpecialtyId(
-      @Path("specialtyId") int id);
 }
