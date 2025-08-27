@@ -9,13 +9,19 @@ class DoctorCard extends StatelessWidget {
   const DoctorCard({
     super.key,
     required this.doctor,
+    this.color,
+    this.elevation,
   });
   final Doctor doctor;
+  final Color? color;
+  final double? elevation;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsDirectional.symmetric(horizontal: 2.w, vertical: 8.h),
+    return Card(
+      margin: EdgeInsetsDirectional.symmetric(horizontal: 2.w, vertical: 8.h),
+      color: color ?? Colors.white.withAlpha(0),
+      elevation: elevation ?? 0,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

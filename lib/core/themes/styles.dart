@@ -16,6 +16,11 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: AppColors.gray,
   );
+  static TextStyle font12SilverGrayMedium = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: AppColors.gray,
+  );
   static TextStyle font12MainBlueRegular = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.regular,
@@ -55,6 +60,11 @@ class TextStyles {
     color: AppColors.darkBlue,
   );
 
+  static TextStyle font14SilverGrayRegular = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: AppColors.silverGray,
+  );
   static TextStyle font14SilverGrayMedium = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.medium,
@@ -103,6 +113,16 @@ class TextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.bold,
     color: AppColors.darkBlue,
+  );
+  static TextStyle font16DarkBlueMedium = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: AppColors.darkBlue,
+  );
+  static TextStyle font16BlackRegular = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: Colors.black,
   );
 
   // ------------ 17 sp ------------
