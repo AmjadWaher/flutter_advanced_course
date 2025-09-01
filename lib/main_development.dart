@@ -11,8 +11,8 @@ void main(List<String> args) async {
   await ScreenUtil.ensureScreenSize();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: Colors.white, // Change to any color
-      statusBarIconBrightness: Brightness.dark, // White icons
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark,
     ),
   );
   runApp(DocApp(

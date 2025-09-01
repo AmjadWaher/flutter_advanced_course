@@ -16,6 +16,7 @@ class Doctor {
   String photo;
   String description;
   String degree;
+  String workDays;
   DoctorSpecialty specialization;
   Clinic clinic;
   double appointPrice;
@@ -33,6 +34,7 @@ class Doctor {
     required this.photo,
     required this.description,
     required this.degree,
+    required this.workDays,
     required this.specialization,
     required this.clinic,
     required this.appointPrice,
