@@ -1,6 +1,7 @@
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/themes/app_colors.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
+import 'package:completed_flutter_projects/core/widgets/app_text_button.dart';
 import 'package:completed_flutter_projects/core/widgets/filter_button.dart';
 import 'package:completed_flutter_projects/features/all_doctors/logic/cubit/all_doctors_cubit.dart';
 import 'package:flutter/material.dart';
@@ -63,92 +64,33 @@ class SearchAndFilter extends StatelessWidget {
     return showModalBottomSheet(
       context: context,
       backgroundColor: Colors.white,
-      constraints: BoxConstraints(
-        maxHeight: 360.h,
-        minWidth: double.infinity,
-      ),
+      constraints: BoxConstraints(maxHeight: 360.h, minWidth: double.infinity),
       builder: (bottomSheetContext) {
         int selectedSpecialty = -1;
 
         return StatefulBuilder(
           builder: (ctx, setModalState) {
             return Padding(
-              padding: EdgeInsets.only(
-                top: 9.h,
-                bottom: 50.h,
-              ),
+              padding: EdgeInsets.only(top: 9.h, bottom: 50.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Divider(
-                    indent: 160.w,
-                    endIndent: 160.w,
-                    color: AppColors.silverGray.withAlpha(51),
-                    thickness: 4.h,
-                  ),
+                  _buildBottomSheetHandle(),
                   verticalSpace(25),
-                  Center(
-                    child: Text(
-                      'Sort By',
-                      style: TextStyles.font18DarkBlueSemiBold,
-                    ),
-                  ),
+                  _buildBottomSheetTitle(),
                   verticalSpace(10),
-                  Divider(
-                    indent: 24.w,
-                    endIndent: 24.w,
-                    color: AppColors.silverGray.withAlpha(51),
-                  ),
+                  _buildDivider(),
                   verticalSpace(10),
-                  Padding(
-                    padding: EdgeInsets.only(left: 24.h),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Specialty',
-                          style: TextStyles.font16DarkBlueMedium,
-                        ),
-                        verticalSpace(24),
-                        _buildFilterSpecialtyOption(
-                          specialtiesFilterList,
-                          selectedSpecialty,
-                          onSelected: (id) => setModalState(
-                            () => selectedSpecialty = id,
-                          ),
-                        ),
-                      ],
-                    ),
+                  _buildSpecialtySection(
+                    selectedSpecialty,
+                    onSelected:
+                        (id) => setModalState(() => selectedSpecialty = id),
                   ),
                   const Spacer(),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.w),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          context
-                              .read<AllDoctorsCubit>()
-                              .emitAllDoctorsBySpecialtyId(selectedSpecialty);
-
-                          Navigator.of(bottomSheetContext).pop();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 12.w,
-                            vertical: 14.h,
-                          ),
-                          backgroundColor: AppColors.mainBlue,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16.r),
-                          ),
-                        ),
-                        child: Text(
-                          'Done',
-                          style: TextStyles.font16WhiteSemiBold,
-                        ),
-                      ),
-                    ),
+                  _buildDoneButton(
+                    context,
+                    bottomSheetContext,
+                    selectedSpecialty,
                   ),
                 ],
               ),
@@ -156,6 +98,71 @@ class SearchAndFilter extends StatelessWidget {
           },
         );
       },
+    );
+  }
+
+  Widget _buildBottomSheetHandle() {
+    return Divider(
+      indent: 160.w,
+      endIndent: 160.w,
+      color: AppColors.silverGray.withAlpha(51),
+      thickness: 4.h,
+    );
+  }
+
+  Widget _buildBottomSheetTitle() {
+    return Center(
+      child: Text('Sort By', style: TextStyles.font18DarkBlueSemiBold),
+    );
+  }
+
+  Widget _buildDivider() {
+    return Divider(
+      indent: 24.w,
+      endIndent: 24.w,
+      color: AppColors.silverGray.withAlpha(51),
+    );
+  }
+
+  Widget _buildSpecialtySection(
+    int selectedSpecialty, {
+    required Function(int id) onSelected,
+  }) {
+    return Padding(
+      padding: EdgeInsets.only(left: 24.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Specialty', style: TextStyles.font16DarkBlueMedium),
+          verticalSpace(24),
+          _buildFilterSpecialtyOption(
+            specialtiesFilterList,
+            selectedSpecialty,
+            onSelected: onSelected,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDoneButton(
+    BuildContext context,
+    BuildContext bottomSheetContext,
+    int selectedSpecialty,
+  ) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24.w),
+      child: AppTextButton(
+        buttonText: 'Done',
+        textStyle: TextStyles.font16WhiteSemiBold,
+        onPressed: () {
+          context.read<AllDoctorsCubit>().emitAllDoctorsBySpecialtyId(
+            selectedSpecialty,
+          );
+
+          Navigator.of(bottomSheetContext).pop();
+        },
+      ),
     );
   }
 

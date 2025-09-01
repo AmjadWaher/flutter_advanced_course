@@ -1,6 +1,7 @@
 import 'package:completed_flutter_projects/core/di/dependence_injection.dart';
 import 'package:completed_flutter_projects/core/routing/routes.dart';
-import 'package:completed_flutter_projects/features/all_doctors/all_doctors_screen.dart';
+import 'package:completed_flutter_projects/features/all_doctors/ui/screens/all_doctors_screen.dart';
+import 'package:completed_flutter_projects/features/doctor_details/ui/screens/doctor_details_screen.dart';
 import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
 import 'package:completed_flutter_projects/features/home/data/models/specialty_response.dart';
 
@@ -57,6 +58,10 @@ class AppRouter {
                 as List<Doctor>,
             specialtiesList: (arguments)['specialtiesList'] as List<Specialty>,
           ),
+        );
+      case Routes.doctorDetailsScreen:
+        return MaterialPageRoute(
+          builder: (_) => DoctorDetailsScreen(doctor: arguments as Doctor),
         );
       default:
         return MaterialPageRoute(
