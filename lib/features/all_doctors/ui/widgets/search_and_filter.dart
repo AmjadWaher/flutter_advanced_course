@@ -4,14 +4,20 @@ import 'package:completed_flutter_projects/core/themes/styles.dart';
 import 'package:completed_flutter_projects/core/widgets/app_text_button.dart';
 import 'package:completed_flutter_projects/core/widgets/filter_button.dart';
 import 'package:completed_flutter_projects/features/all_doctors/logic/cubit/all_doctors_cubit.dart';
+import 'package:completed_flutter_projects/features/home/data/models/specialty_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchAndFilter extends StatelessWidget {
-  const SearchAndFilter({super.key, required this.specialtiesFilterList});
+  const SearchAndFilter({
+    super.key,
+    required this.specialtiesFilterList,
+    this.specialty,
+  });
   final List<SpecialtyFilterModel> specialtiesFilterList;
+  final Specialty? specialty;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +27,11 @@ class SearchAndFilter extends StatelessWidget {
         children: [
           _buildSearchField(context),
           horizontalSpace(2),
-          IconButton(
-            onPressed: () => _showFilterBottomSheet(context),
-            icon: Icon(Icons.filter_list),
-          ),
+          if (specialty == null)
+            IconButton(
+              onPressed: () => _showFilterBottomSheet(context),
+              icon: Icon(Icons.filter_list),
+            ),
         ],
       ),
     );
@@ -54,7 +61,7 @@ class SearchAndFilter extends StatelessWidget {
           ),
         ),
         onChanged: (value) {
-          context.read<AllDoctorsCubit>().emitSearchedDoctors(value);
+          context.read<AllDoctorsCubit>().emitSearchedDoctors(value,specialtyId: specialty?.id);
         },
       ),
     );

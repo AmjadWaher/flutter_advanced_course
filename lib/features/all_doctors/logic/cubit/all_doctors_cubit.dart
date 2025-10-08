@@ -5,9 +5,7 @@ import 'package:completed_flutter_projects/features/all_doctors/logic/cubit/all_
 
 class AllDoctorsCubit extends Cubit<AllDoctorsState> {
   final List<Doctor> _allDoctorsList;
-  AllDoctorsCubit(
-    this._allDoctorsList,
-  ) : super(AllDoctorsState.initial());
+  AllDoctorsCubit(this._allDoctorsList) : super(AllDoctorsState.initial());
 
   void emitAllDoctorsBySpecialtyId(int specialtyId) async {
     emit(AllDoctorsState.loading());
@@ -26,17 +24,28 @@ class AllDoctorsCubit extends Cubit<AllDoctorsState> {
     }
   }
 
-  void emitSearchedDoctors(String value) {
+  void emitSearchedDoctors(String value, {int? specialtyId}) {
     emit(AllDoctorsState.loading());
-    if (value.isNotEmpty) {
-      final searchedDoctors = _allDoctorsList
-          .where((doctor) =>
-              doctor.username.toLowerCase().contains(value.toLowerCase()))
-          .toList();
 
-      emit(AllDoctorsState.success(searchedDoctors));
-    } else {
-      emit(AllDoctorsState.success(_allDoctorsList));
+    List<Doctor> filtered = _allDoctorsList;
+
+    if (value.isNotEmpty) {
+      filtered =
+          filtered
+              .where(
+                (doctor) =>
+                    doctor.username.toLowerCase().contains(value.toLowerCase()),
+              )
+              .toList();
     }
+
+    if (specialtyId != null) {
+      filtered =
+          filtered
+              .where((doctor) => doctor.specialization.id == specialtyId)
+              .toList();
+    }
+
+    emit(AllDoctorsState.success(filtered));
   }
 }
