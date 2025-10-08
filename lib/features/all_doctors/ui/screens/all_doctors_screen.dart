@@ -15,21 +15,29 @@ class AllDoctorsScreen extends StatelessWidget {
     super.key,
     required this.doctorsList,
     required this.specialtiesList,
+    this.specialty,
   });
   final List<Doctor> doctorsList;
   final List<Specialty> specialtiesList;
+  final Specialty? specialty;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          AllDoctorsCubit(doctorsList)..emitAllDoctorsBySpecialtyId(-1),
+      create:
+          (context) => AllDoctorsCubit(doctorsList)
+            ..emitAllDoctorsBySpecialtyId(
+              specialty == null ? -1 : specialty!.id,
+            ),
       child: Scaffold(
         body: SafeArea(
           child: Column(
             children: [
-              const AppTopBar(title: 'All Doctors'),
+              AppTopBar(
+                title: specialty == null ? 'All Doctors' : specialty!.name,
+              ),
               SearchAndFilter(
+                specialty: specialty,
                 specialtiesFilterList: [
                   SpecialtyFilterModel(id: -1, name: 'All'),
                   ...specialtiesList.map(
@@ -59,9 +67,7 @@ class AllDoctorsScreen extends StatelessWidget {
 
                     default:
                       return Expanded(
-                        child: const Center(
-                          child: CircularProgressIndicator(),
-                        ),
+                        child: const Center(child: CircularProgressIndicator()),
                       );
                   }
                 },

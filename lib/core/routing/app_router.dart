@@ -48,7 +48,9 @@ class AppRouter {
       case Routes.doctorSpecialtyScreen:
         return MaterialPageRoute(
           builder: (_) => DoctorSpecialtyScreen(
-            specialtyList: arguments as List<Specialty>,
+            doctorsList: (arguments as Map<String, dynamic>)['doctorsList']
+                as List<Doctor>,
+            specialtyList: (arguments)['specialtiesList'] as List<Specialty>,
           ),
         );
       case Routes.allDoctorsScreen:
@@ -57,6 +59,7 @@ class AppRouter {
             doctorsList: (arguments as Map<String, dynamic>)['doctorsList']
                 as List<Doctor>,
             specialtiesList: (arguments)['specialtiesList'] as List<Specialty>,
+            specialty: (arguments)['specialty'] as Specialty?,
           ),
         );
       case Routes.doctorDetailsScreen:

@@ -13,17 +13,19 @@ class SpecialityCard extends StatelessWidget {
     this.height,
     this.width,
     this.textStyle,
+    required this.onTap,
   });
   final Specialty specialtyModel;
   final double? radius;
   final double? height;
   final double? width;
   final TextStyle? textStyle;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       child: Padding(
