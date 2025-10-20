@@ -44,7 +44,7 @@ class AppTopBar extends StatelessWidget {
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-            color: AppColors.lightGray,
+            color: AppColors.snowGray,
             width: 1,
           ),
         ),

@@ -1,6 +1,8 @@
 import 'package:completed_flutter_projects/core/di/dependence_injection.dart';
 import 'package:completed_flutter_projects/core/routing/routes.dart';
 import 'package:completed_flutter_projects/features/all_doctors/ui/screens/all_doctors_screen.dart';
+import 'package:completed_flutter_projects/features/appointment/logic/cubit/booking_cubit.dart';
+import 'package:completed_flutter_projects/features/appointment/ui/screens/book_appointment_screen.dart';
 import 'package:completed_flutter_projects/features/doctor_details/ui/screens/doctor_details_screen.dart';
 import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
 import 'package:completed_flutter_projects/features/home/data/models/specialty_response.dart';
@@ -24,53 +26,68 @@ class AppRouter {
 
     switch (setting.name) {
       case Routes.onBordingScreen:
-        return MaterialPageRoute(
-          builder: (_) => const OnboardingScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
       case Routes.loginScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => getIt<LoginCubit>(),
-            child: const LoginScreen(),
-          ),
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<LoginCubit>(),
+                child: const LoginScreen(),
+              ),
         );
       case Routes.signUpScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => getIt<SignUpCubit>(),
-            child: const SignUpScreen(),
-          ),
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<SignUpCubit>(),
+                child: const SignUpScreen(),
+              ),
         );
       case Routes.mainHomeScreen:
-        return MaterialPageRoute(
-          builder: (_) => const MainHomeScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const MainHomeScreen());
       case Routes.doctorSpecialtyScreen:
         return MaterialPageRoute(
-          builder: (_) => DoctorSpecialtyScreen(
-            doctorsList: (arguments as Map<String, dynamic>)['doctorsList']
-                as List<Doctor>,
-            specialtyList: (arguments)['specialtiesList'] as List<Specialty>,
-          ),
+          builder:
+              (_) => DoctorSpecialtyScreen(
+                doctorsList:
+                    (arguments as Map<String, dynamic>)['doctorsList']
+                        as List<Doctor>,
+                specialtyList:
+                    (arguments)['specialtiesList'] as List<Specialty>,
+              ),
         );
       case Routes.allDoctorsScreen:
         return MaterialPageRoute(
-          builder: (_) => AllDoctorsScreen(
-            doctorsList: (arguments as Map<String, dynamic>)['doctorsList']
-                as List<Doctor>,
-            specialtiesList: (arguments)['specialtiesList'] as List<Specialty>,
-            specialty: (arguments)['specialty'] as Specialty?,
-          ),
+          builder:
+              (_) => AllDoctorsScreen(
+                doctorsList:
+                    (arguments as Map<String, dynamic>)['doctorsList']
+                        as List<Doctor>,
+                specialtiesList:
+                    (arguments)['specialtiesList'] as List<Specialty>,
+                specialty: (arguments)['specialty'] as Specialty?,
+              ),
         );
       case Routes.doctorDetailsScreen:
         return MaterialPageRoute(
           builder: (_) => DoctorDetailsScreen(doctor: arguments as Doctor),
         );
+      case Routes.bookAppointmentScreen:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => BookingCubit(getIt()),
+                child: BookAppointmentScreen(doctor: arguments as Doctor),
+              ),
+        );
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(child: Text('No route defined for ${setting.name}')),
-          ),
+          builder:
+              (_) => Scaffold(
+                body: Center(
+                  child: Text('No route defined for ${setting.name}'),
+                ),
+              ),
         );
     }
   }

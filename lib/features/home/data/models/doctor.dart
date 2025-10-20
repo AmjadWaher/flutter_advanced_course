@@ -47,7 +47,7 @@ class Doctor {
   static String _formatTime(String time) {
     try {
       final dt = DateFormat("HH:mm:ss").parse(time);
-      return DateFormat("hh:mm a").format(dt);
+      return DateFormat("HH:mm:ss").format(dt);
     } catch (_) {
       return time;
     }

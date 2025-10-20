@@ -43,7 +43,7 @@ class _GenderMenuState extends State<GenderMenu> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppColors.lightGray,
+              color: AppColors.snowGray,
             ),
             color: AppColors.paleGray,
           ),

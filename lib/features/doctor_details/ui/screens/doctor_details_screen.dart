@@ -1,6 +1,6 @@
 import 'package:completed_flutter_projects/core/helpers/extensions.dart';
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
-import 'package:completed_flutter_projects/core/themes/app_colors.dart';
+import 'package:completed_flutter_projects/core/routing/routes.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
 import 'package:completed_flutter_projects/core/widgets/app_text_button.dart';
 import 'package:completed_flutter_projects/core/widgets/app_top_bar.dart';
@@ -10,7 +10,6 @@ import 'package:completed_flutter_projects/features/doctor_details/ui/screens/lo
 import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class DoctorDetailsScreen extends StatelessWidget {
   const DoctorDetailsScreen({super.key, required this.doctor});
@@ -51,7 +50,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                       AppTextButton(
                         buttonText: 'Make An Appointment',
                         textStyle: TextStyles.font16WhiteSemiBold,
-                        onPressed: () {},
+                        onPressed: () => context.pushNamed(Routes.bookAppointmentScreen,arguments: doctor),
                       ),
                     ],
                   ),
@@ -70,15 +69,6 @@ class DoctorDetailsScreen extends StatelessWidget {
       doctor: doctor,
       height: 80,
       width: 80,
-      trailing: IconButton(
-        onPressed: () {},
-        icon: SvgPicture.asset(
-          'assets/svgs/message.svg',
-          height: 24.h,
-          width: 24.w,
-          colorFilter: ColorFilter.mode(AppColors.mainBlue, BlendMode.srcIn),
-        ),
-      ),
       onTap: () {},
     );
   }
