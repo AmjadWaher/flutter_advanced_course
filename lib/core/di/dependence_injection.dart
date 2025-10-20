@@ -1,5 +1,7 @@
 import 'package:completed_flutter_projects/core/networking/api_service.dart';
 import 'package:completed_flutter_projects/core/networking/dio_factory.dart';
+import 'package:completed_flutter_projects/features/appointment/data/api/booking_api_service.dart';
+import 'package:completed_flutter_projects/features/appointment/data/repository/booking_repository.dart';
 import 'package:completed_flutter_projects/features/home/data/apis/home_api_service.dart';
 import 'package:completed_flutter_projects/features/home/data/repository/home_repository.dart';
 import 'package:completed_flutter_projects/features/login/data/repository/login_repository.dart';
@@ -21,11 +23,16 @@ Future<void> setUpGetIt() async {
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
 
   // signup
-  getIt
-      .registerLazySingleton<SignUpRepository>(() => SignUpRepository(getIt()));
+  getIt.registerLazySingleton<SignUpRepository>(
+    () => SignUpRepository(getIt()),
+  );
   getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
 
   // home
   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
   getIt.registerLazySingleton<HomeRepository>(() => HomeRepository(getIt()));
+
+  // booking
+  getIt.registerLazySingleton<BookingApiService>(() => BookingApiService(dio));
+  getIt.registerLazySingleton<BookingRepository>(() => BookingRepository(getIt()));
 }

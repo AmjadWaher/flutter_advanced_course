@@ -22,7 +22,7 @@ class DocApp extends StatelessWidget {
               primaryColor: AppColors.mainBlue,
               scaffoldBackgroundColor: Colors.white,
               tabBarTheme: TabBarThemeData(
-                dividerColor: AppColors.lightGray,
+                dividerColor: AppColors.snowGray,
                 labelColor: AppColors.mainBlue,
                 unselectedLabelColor: AppColors.neutralGray,
                 labelStyle: TextStyles.font14GrayBold,
