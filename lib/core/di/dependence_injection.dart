@@ -1,7 +1,7 @@
 import 'package:completed_flutter_projects/core/networking/api_service.dart';
 import 'package:completed_flutter_projects/core/networking/dio_factory.dart';
-import 'package:completed_flutter_projects/features/appointment/data/api/booking_api_service.dart';
-import 'package:completed_flutter_projects/features/appointment/data/repository/booking_repository.dart';
+import 'package:completed_flutter_projects/features/book_appointment/data/api/booking_api_service.dart';
+import 'package:completed_flutter_projects/features/book_appointment/data/repository/booking_repository.dart';
 import 'package:completed_flutter_projects/features/home/data/apis/home_api_service.dart';
 import 'package:completed_flutter_projects/features/home/data/repository/home_repository.dart';
 import 'package:completed_flutter_projects/features/login/data/repository/login_repository.dart';

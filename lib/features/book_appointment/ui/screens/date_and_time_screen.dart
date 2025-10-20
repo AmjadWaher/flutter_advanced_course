@@ -1,7 +1,7 @@
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
-import 'package:completed_flutter_projects/features/appointment/ui/widgets/horizontal_date_picker.dart';
-import 'package:completed_flutter_projects/features/appointment/ui/widgets/vertical_time_picker.dart';
+import 'package:completed_flutter_projects/features/book_appointment/ui/widgets/horizontal_date_picker.dart';
+import 'package:completed_flutter_projects/features/book_appointment/ui/widgets/vertical_time_picker.dart';
 import 'package:flutter/material.dart';
 
 class DateAndTimeScreen extends StatelessWidget {

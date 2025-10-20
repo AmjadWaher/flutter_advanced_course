@@ -1,7 +1,7 @@
 import 'package:completed_flutter_projects/core/networking/api_constants.dart';
-import 'package:completed_flutter_projects/features/appointment/data/api/booking_api_constants.dart';
-import 'package:completed_flutter_projects/features/appointment/data/models/booking_request.dart';
-import 'package:completed_flutter_projects/features/appointment/data/models/booking_response.dart';
+import 'package:completed_flutter_projects/features/book_appointment/data/api/booking_api_constants.dart';
+import 'package:completed_flutter_projects/features/book_appointment/data/models/booking_request.dart';
+import 'package:completed_flutter_projects/features/book_appointment/data/models/booking_response.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
