@@ -1,10 +1,10 @@
 import 'package:completed_flutter_projects/core/networking/api_result.dart'
     as api_result;
-import 'package:completed_flutter_projects/features/appointment/data/models/booking_request.dart';
-import 'package:completed_flutter_projects/features/appointment/data/repository/booking_repository.dart';
+import 'package:completed_flutter_projects/features/book_appointment/data/models/booking_request.dart';
+import 'package:completed_flutter_projects/features/book_appointment/data/repository/booking_repository.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:completed_flutter_projects/features/appointment/logic/cubit/booking_state.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_state.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BookingCubit extends Cubit<BookingState> {

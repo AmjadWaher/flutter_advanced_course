@@ -1,8 +1,8 @@
 import 'package:completed_flutter_projects/core/di/dependence_injection.dart';
 import 'package:completed_flutter_projects/core/routing/routes.dart';
 import 'package:completed_flutter_projects/features/all_doctors/ui/screens/all_doctors_screen.dart';
-import 'package:completed_flutter_projects/features/appointment/logic/cubit/booking_cubit.dart';
-import 'package:completed_flutter_projects/features/appointment/ui/screens/book_appointment_screen.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_cubit.dart';
+import 'package:completed_flutter_projects/features/book_appointment/ui/screens/book_appointment_screen.dart';
 import 'package:completed_flutter_projects/features/doctor_details/ui/screens/doctor_details_screen.dart';
 import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
 import 'package:completed_flutter_projects/features/home/data/models/specialty_response.dart';
