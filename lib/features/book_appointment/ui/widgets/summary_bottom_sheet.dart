@@ -14,68 +14,61 @@ class SummaryBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<BookingCubit, BookingState>(
-      listener: (context, state) {
-        if (state.isError) {
-          print(state.errorMessage);
-        }
-      },
-      child: Container(
-        height: 300,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
+    return Container(
+      height: 280.h,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+            offset: Offset(0, -2),
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 10,
-              offset: Offset(0, -2),
+        ],
+      ),
+      child: Padding(
+        padding: EdgeInsets.only(
+          top: 10.h,
+          right: 24.w,
+          left: 24.w,
+          bottom: 35.h,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Divider(
+              indent: 140.w,
+              endIndent: 140.w,
+              color: AppColors.silverGray.withAlpha(51),
+              thickness: 4.h,
+            ),
+            verticalSpace(8),
+            Text('Payment Info', style: TextStyles.font14DarkBlueSemiBold),
+            verticalSpace(20),
+            _paymentInfoRow('Subtotal', doctor.appointPrice.toString()),
+            verticalSpace(12),
+            _paymentInfoRow('Tax', '0'),
+            verticalSpace(18),
+            _paymentInfoRow(
+              'Payment Total',
+              doctor.appointPrice.toString(),
+              isBold: true,
+            ),
+            Spacer(),
+            _bookButton(
+              onPressed: () {
+                context.read<BookingCubit>().submitBooking(
+                  doctor.id,
+                  doctor.appointPrice,
+                );
+              },
             ),
           ],
-        ),
-        child: Padding(
-          padding: EdgeInsets.only(
-            top: 10.h,
-            right: 24.w,
-            left: 24.w,
-            bottom: 20.h,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Divider(
-                indent: 140.w,
-                endIndent: 140.w,
-                color: AppColors.silverGray.withAlpha(51),
-                thickness: 4.h,
-              ),
-              verticalSpace(8),
-              Text('Payment Info', style: TextStyles.font14DarkBlueSemiBold),
-              verticalSpace(20),
-              _paymentInfoRow('Subtotal', doctor.appointPrice.toString()),
-              verticalSpace(12),
-              _paymentInfoRow('Tax', '0'),
-              verticalSpace(18),
-              _paymentInfoRow(
-                'Payment Total',
-                doctor.appointPrice.toString(),
-                isBold: true,
-              ),
-              verticalSpace(22),
-              _bookButton(
-                onPressed: () {
-                  context.read<BookingCubit>().submitBooking(
-                    doctor.id,
-                    doctor.appointPrice,
-                  );
-                },
-              ),
-            ],
-          ),
         ),
       ),
     );
@@ -111,12 +104,12 @@ class SummaryBottomSheet extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
             ),
             fixedSize: WidgetStateProperty.all<Size>(
-              Size(double.maxFinite, 46.h),
+              Size(double.maxFinite, 50.h),
             ),
           ),
           child:
               state
-                  ? CircularProgressIndicator()
+                  ? CircularProgressIndicator(color: Colors.white)
                   : Text('Book Now', style: TextStyles.font16WhiteSemiBold),
         );
       },

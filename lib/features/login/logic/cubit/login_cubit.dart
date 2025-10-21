@@ -1,3 +1,5 @@
+import 'package:completed_flutter_projects/core/helpers/constants.dart';
+import 'package:completed_flutter_projects/core/helpers/shared_pref_helper.dart';
 import 'package:completed_flutter_projects/core/networking/api_result.dart'
     as api_result;
 import 'package:completed_flutter_projects/features/login/data/models/login_request_body.dart';
@@ -16,19 +18,29 @@ class LoginCubit extends Cubit<LoginState> {
 
   void emitLoginStates() async {
     emit(const LoginState.loading());
-    final response = await _loginRepository.login(LoginRequestBody(
-      email: emailController.text,
-      password: passwordController.text,
-    ));
+    final response = await _loginRepository.login(
+      LoginRequestBody(
+        email: emailController.text,
+        password: passwordController.text,
+      ),
+    );
 
     switch (response) {
       case api_result.Success(:final data):
-        emit(LoginState.success(data));
-        break;
+        {
+          await saveUserToken(data.userData!.token);
+          emit(LoginState.success(data));
+          break;
+        }
 
       case api_result.Failure(:final error):
         emit(LoginState.error(message: error.apiErrorModel.message ?? ''));
         break;
     }
+  }
+
+  Future<void> saveUserToken(String token) async {
+    // save token to FlutterSecureStorage
+    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, token);
   }
 }

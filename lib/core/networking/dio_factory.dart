@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:completed_flutter_projects/core/helpers/constants.dart';
+import 'package:completed_flutter_projects/core/helpers/shared_pref_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -18,11 +20,7 @@ class DioFactory {
 
       dio!
         ..options.connectTimeout = timeout
-        ..options.receiveTimeout = timeout
-        ..options.headers = {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        };
+        ..options.receiveTimeout = timeout;
 
       (dio!.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
         HttpClient httpClient = HttpClient();
@@ -34,11 +32,22 @@ class DioFactory {
         return httpClient;
       };
 
+      await addDioHeaders();
       addDioInterceptor();
       return dio!;
     } else {
       return dio!;
     }
+  }
+
+  static Future<void> addDioHeaders() async {
+    final token = await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken);
+
+    dio?.options.headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
   }
 
   static void addDioInterceptor() {
