@@ -41,3 +41,7 @@ extension StringExtensions on String {
         .join(hasDot ? '. ' : ' ');
   }
 }
+
+extension StringNullExtensions on String? {
+  bool isNullOrEmpty() => this == null || this == "";
+}

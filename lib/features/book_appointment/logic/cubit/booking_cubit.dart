@@ -45,13 +45,13 @@ class BookingCubit extends Cubit<BookingState> {
         emit(
           state.copyWith(isLoading: false, isConfirmed: true, isError: false),
         );
-      case api_result.Failure(:final error):
+      case api_result.Failure():
         emit(
           state.copyWith(
             isLoading: false,
             isConfirmed: false,
             isError: true,
-            errorMessage: error.apiErrorModel.message ,//'Booking Not Confirmed',
+            errorMessage: 'Booking Not Confirmed',
           ),
         );
     }

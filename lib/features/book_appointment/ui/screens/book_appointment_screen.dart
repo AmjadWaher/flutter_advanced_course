@@ -22,13 +22,11 @@ class BookAppointmentScreen extends StatefulWidget {
 class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   final _pageController = PageController();
   int pageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet:
-          pageIndex == 2
-              ? SummaryBottomSheet(doctor: widget.doctor)
-              : SizedBox.shrink(),
+      bottomSheet: _bottomSheet(),
       body: SafeArea(
         child: Column(
           children: [
@@ -74,6 +72,30 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _bottomSheet() {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 150),
+      transitionBuilder: (child, animation) {
+        final offsetAnimation = Tween<Offset>(
+          begin: const Offset(0, 1),
+          end: Offset.zero,
+        ).animate(CurvedAnimation(parent: animation, curve: Curves.easeOut));
+
+        return SlideTransition(position: offsetAnimation, child: child);
+      },
+      child:
+          pageIndex == 2
+              ? BottomSheet(
+                elevation: 0,
+                backgroundColor: Colors.white.withAlpha(0),
+                onClosing: () {},
+                enableDrag: false,
+                builder: (context) => SummaryBottomSheet(doctor: widget.doctor),
+              )
+              : SizedBox.shrink(),
     );
   }
 

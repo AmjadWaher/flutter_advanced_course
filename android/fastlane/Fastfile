@@ -12,7 +12,7 @@ platform :android do
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       testers: "amjadwaher623@gmail.com",
-      release_notes: "Added Book Appointment Screen & API"
+      release_notes: "Enable API in Booking Appointment Feature"
     )
   end
 end
