@@ -29,7 +29,7 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
   Future<void> submitBooking(String doctorId, double price) async {
-    emit(state.copyWith(isLoading: true, isConfirmed: true));
+    emit(state.copyWith(isLoading: true));
     final response = await _bookingRepository.submitBooking(
       BookingRequest(
         doctorId: doctorId,
@@ -45,6 +45,7 @@ class BookingCubit extends Cubit<BookingState> {
         emit(
           state.copyWith(isLoading: false, isConfirmed: true, isError: false),
         );
+        break;
       case api_result.Failure():
         emit(
           state.copyWith(
@@ -54,6 +55,7 @@ class BookingCubit extends Cubit<BookingState> {
             errorMessage: 'Booking Not Confirmed',
           ),
         );
+        break;
     }
   }
 

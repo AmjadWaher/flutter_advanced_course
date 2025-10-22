@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextStyles {
-
   // ------------ 12 sp ------------
 
   static TextStyle font11WhiteMedium = TextStyle(
@@ -219,6 +218,11 @@ class TextStyles {
     color: AppColors.darkBlue,
     fontWeight: FontWeightHelper.bold,
   );
+  static TextStyle font18DarkBlueMedium = TextStyle(
+    fontSize: 18.sp,
+    color: AppColors.darkBlue,
+    fontWeight: FontWeightHelper.medium,
+  );
   static TextStyle font18WhiteMedium = TextStyle(
     fontSize: 18.sp,
     color: Colors.white,
@@ -228,6 +232,14 @@ class TextStyles {
     fontSize: 18.sp,
     color: AppColors.darkBlue,
     fontWeight: FontWeightHelper.semiBold,
+  );
+
+  // ------------ 20 sp ------------
+
+  static TextStyle font20DarkBlueMedium = TextStyle(
+    fontSize: 20.sp,
+    color: AppColors.darkBlue,
+    fontWeight: FontWeightHelper.medium,
   );
 
   // ------------ 24 sp ------------

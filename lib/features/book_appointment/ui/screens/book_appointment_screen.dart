@@ -6,6 +6,7 @@ import 'package:completed_flutter_projects/core/widgets/app_top_bar.dart';
 import 'package:completed_flutter_projects/features/book_appointment/ui/screens/date_and_time_screen.dart';
 import 'package:completed_flutter_projects/features/book_appointment/ui/screens/payment_screen.dart';
 import 'package:completed_flutter_projects/features/book_appointment/ui/screens/summary_screen.dart';
+import 'package:completed_flutter_projects/features/book_appointment/ui/widgets/book_appointment_bloc_listener.dart';
 import 'package:completed_flutter_projects/features/book_appointment/ui/widgets/summary_bottom_sheet.dart';
 import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
 import 'package:flutter/material.dart';
@@ -69,6 +70,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                   },
                 ),
               ),
+            BookAppointmentBlocListener(doctor: widget.doctor),
           ],
         ),
       ),

@@ -32,7 +32,7 @@ class DioFactory {
         return httpClient;
       };
 
-      await addDioHeaders();
+      addDioHeaders();
       addDioInterceptor();
       return dio!;
     } else {
@@ -40,14 +40,20 @@ class DioFactory {
     }
   }
 
-  static Future<void> addDioHeaders() async {
-    final token = await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken);
+  static void addDioHeaders() async {
+    final token = await SharedPrefHelper.getSecuredString(
+      SharedPrefKeys.userToken,
+    );
 
     dio?.options.headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
+  }
+
+  static void setTokenIntoHeaderAfterLogin(String token) {
+    dio?.options.headers = {'Authorization': 'Bearer $token'};
   }
 
   static void addDioInterceptor() {

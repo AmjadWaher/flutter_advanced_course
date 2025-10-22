@@ -2,6 +2,7 @@ import 'package:completed_flutter_projects/core/helpers/constants.dart';
 import 'package:completed_flutter_projects/core/helpers/shared_pref_helper.dart';
 import 'package:completed_flutter_projects/core/networking/api_result.dart'
     as api_result;
+import 'package:completed_flutter_projects/core/networking/dio_factory.dart';
 import 'package:completed_flutter_projects/features/login/data/models/login_request_body.dart';
 import 'package:completed_flutter_projects/features/login/data/repository/login_repository.dart';
 import 'package:completed_flutter_projects/features/login/logic/cubit/login_state.dart';
@@ -15,6 +16,13 @@ class LoginCubit extends Cubit<LoginState> {
   final formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  // UI-only reactive variable
+  final ValueNotifier<bool> isVisible = ValueNotifier(true);
+
+  void togglePasswordVisibility() {
+    isVisible.value = !isVisible.value;
+  }
 
   void emitLoginStates() async {
     emit(const LoginState.loading());
@@ -42,5 +50,13 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> saveUserToken(String token) async {
     // save token to FlutterSecureStorage
     await SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, token);
+    DioFactory.setTokenIntoHeaderAfterLogin(token);
+  }
+
+  @override
+  Future<void> close() {
+    emailController.dispose();
+    passwordController.dispose();
+    return super.close();
   }
 }
