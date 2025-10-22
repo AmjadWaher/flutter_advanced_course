@@ -2,7 +2,9 @@ import 'package:completed_flutter_projects/core/di/dependence_injection.dart';
 import 'package:completed_flutter_projects/core/routing/routes.dart';
 import 'package:completed_flutter_projects/features/all_doctors/ui/screens/all_doctors_screen.dart';
 import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_cubit.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_state.dart';
 import 'package:completed_flutter_projects/features/book_appointment/ui/screens/book_appointment_screen.dart';
+import 'package:completed_flutter_projects/features/book_appointment/ui/screens/booking_details_screen.dart';
 import 'package:completed_flutter_projects/features/doctor_details/ui/screens/doctor_details_screen.dart';
 import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
 import 'package:completed_flutter_projects/features/home/data/models/specialty_response.dart';
@@ -78,6 +80,14 @@ class AppRouter {
               (_) => BlocProvider(
                 create: (context) => BookingCubit(getIt()),
                 child: BookAppointmentScreen(doctor: arguments as Doctor),
+              ),
+        );
+      case Routes.bookingDetailsScreen:
+        return MaterialPageRoute(
+          builder:
+              (context) => BookingDetailsScreen(
+                doctor: (arguments as Map<String, dynamic>)['doctor'] as Doctor,
+                bookingState: (arguments)['bookingState'] as BookingState,
               ),
         );
       default:
