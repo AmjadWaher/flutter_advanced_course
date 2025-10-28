@@ -1,4 +1,3 @@
-import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +16,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       color: Colors.white,
-      padding: EdgeInsets.only(right: 15.w, left: 15.w),
+      padding: EdgeInsets.only(right: 30.w, left: 30.w),
       elevation: 0.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -28,19 +27,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
             onTap: () => onTap(0),
           ),
           _navigationItem(
-            icon: 'assets/svgs/message.svg',
+            icon: 'assets/svgs/calender.svg',
             selected: pageIndex == 1,
             onTap: () => onTap(1),
           ),
-          horizontalSpace(20),
-          _navigationItem(
-            icon: 'assets/svgs/calender.svg',
-            selected: pageIndex == 2,
-            onTap: () => onTap(2),
-          ),
-          _navigationProfile(
-            onTap: () => onTap(3),
-          ),
+          _navigationProfile(onTap: () => onTap(2)),
         ],
       ),
     );
@@ -76,9 +67,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
           image: DecorationImage(
-            image: AssetImage(
-              'assets/images/male_face_avatar.png',
-            ),
+            image: AssetImage('assets/images/male_face_avatar.png'),
           ),
         ),
       ),
