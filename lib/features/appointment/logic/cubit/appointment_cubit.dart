@@ -6,14 +6,25 @@ import 'package:completed_flutter_projects/features/appointment/data/repository/
 import 'package:completed_flutter_projects/features/appointment/logic/cubit/appointment_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-List<Appointment> upcoming = [];
-List<Appointment> completed = [];
-List<Appointment> cancelled = [];
-
 class AppointmentCubit extends Cubit<AppointmentState> {
   final AppointmentRepository _myAppointmentRepository;
   AppointmentCubit(this._myAppointmentRepository)
     : super(AppointmentState.initial());
+  List<Appointment> upcoming = [];
+  List<Appointment> completed = [];
+  List<Appointment> cancelled = [];
+
+  void _emitCurrentAppointments() {
+    emit(
+      AppointmentState.success(
+        AppointmentStatusData(
+          upcoming: List.from(upcoming),
+          completed: List.from(completed),
+          cancelled: List.from(cancelled),
+        ),
+      ),
+    );
+  }
 
   void emitAppointmentStates() async {
     emit(AppointmentState.loading());
@@ -21,58 +32,54 @@ class AppointmentCubit extends Cubit<AppointmentState> {
 
     switch (response) {
       case api_result.Success(:final data):
-        upcoming =
-            data.data
-                .where((a) => a.status == AppointmentStatus.Pending)
-                .toList();
-        completed =
-            data.data
-                .where((a) => a.status == AppointmentStatus.Completed)
-                .toList();
-        cancelled =
-            data.data
-                .where((a) => a.status == AppointmentStatus.Cancelled)
-                .toList();
-
+        upcoming.clear();
+        completed.clear();
+        cancelled.clear();
+        for (var a in data.data) {
+          switch (a.status) {
+            case AppointmentStatus.Pending:
+              upcoming.add(a);
+              break;
+            case AppointmentStatus.Completed:
+              completed.add(a);
+              break;
+            case AppointmentStatus.Cancelled:
+              cancelled.add(a);
+              break;
+          }
+        }
+        _emitCurrentAppointments();
+        break;
+      case api_result.Failure(:final error):
         emit(
-          AppointmentState.success(
-            AppointmentStatusData(
-              upcoming: upcoming,
-              completed: completed,
-              cancelled: cancelled,
-            ),
+          AppointmentState.failure(
+            error.apiErrorModel.message ??
+                'Something went wrong, Please try later',
           ),
         );
-        break;
-
-      case api_result.Failure(:final error):
-        emit(AppointmentState.failure(error.apiErrorModel.message ?? ''));
         break;
     }
   }
 
-  void emitCancelAppointment(Appointment appointment) async {
+  void emitCancelAppointment(int appointmentId) async {
     emit(AppointmentState.loading());
     final response = await _myAppointmentRepository.cancelAppointment(
-      appointment.id,
+      appointmentId,
     );
     switch (response) {
       case api_result.Success(:final data):
-        upcoming.remove(appointment);
+        upcoming.removeWhere((a) => a.id == appointmentId);
         cancelled.add(data.data);
-        emit(
-          AppointmentState.success(
-            AppointmentStatusData(
-              upcoming: upcoming,
-              completed: completed,
-              cancelled: cancelled,
-            ),
-          ),
-        );
+        _emitCurrentAppointments();
         break;
 
       case api_result.Failure(:final error):
-        emit(AppointmentState.failure(error.apiErrorModel.message ?? ''));
+        emit(
+          AppointmentState.failure(
+            error.apiErrorModel.message ??
+                'Something went wrong, Please try later',
+          ),
+        );
         break;
     }
   }
@@ -83,24 +90,20 @@ class AppointmentCubit extends Cubit<AppointmentState> {
       request,
     );
 
-    final appointment = upcoming.where((a) => a.id == request.id).first;
     switch (response) {
       case api_result.Success(:final data):
-        upcoming.remove(appointment);
+        upcoming.removeWhere((a) => a.id == request.id);
         upcoming.add(data.data);
-        emit(
-          AppointmentState.success(
-            AppointmentStatusData(
-              upcoming: upcoming,
-              completed: completed,
-              cancelled: cancelled,
-            ),
-          ),
-        );
+        _emitCurrentAppointments();
         break;
 
       case api_result.Failure(:final error):
-        emit(AppointmentState.failure(error.apiErrorModel.message ?? ''));
+        emit(
+          AppointmentState.failure(
+            error.apiErrorModel.message ??
+                'Something went wrong, Please try later',
+          ),
+        );
         break;
     }
   }
