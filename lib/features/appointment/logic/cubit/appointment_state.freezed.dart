@@ -13,7 +13,7 @@ part of 'appointment_state.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$AppointmentState<T> {
+mixin _$AppointmentState {
 
 
 
@@ -21,7 +21,7 @@ mixin _$AppointmentState<T> {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppointmentState<T>);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppointmentState);
 }
 
 
@@ -30,22 +30,22 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppointmentState<$T>()';
+  return 'AppointmentState()';
 }
 
 
 }
 
 /// @nodoc
-class $AppointmentStateCopyWith<T,$Res>  {
-$AppointmentStateCopyWith(AppointmentState<T> _, $Res Function(AppointmentState<T>) __);
+class $AppointmentStateCopyWith<$Res>  {
+$AppointmentStateCopyWith(AppointmentState _, $Res Function(AppointmentState) __);
 }
 
 
 /// @nodoc
 
 
-class _Initial<T> implements AppointmentState<T> {
+class _Initial implements AppointmentState {
   const _Initial();
   
 
@@ -56,7 +56,7 @@ class _Initial<T> implements AppointmentState<T> {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial<T>);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
 }
 
 
@@ -65,7 +65,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppointmentState<$T>.initial()';
+  return 'AppointmentState.initial()';
 }
 
 
@@ -77,7 +77,7 @@ String toString() {
 /// @nodoc
 
 
-class Loading<T> implements AppointmentState<T> {
+class Loading implements AppointmentState {
   const Loading();
   
 
@@ -88,7 +88,7 @@ class Loading<T> implements AppointmentState<T> {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Loading<T>);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Loading);
 }
 
 
@@ -97,7 +97,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppointmentState<$T>.loading()';
+  return 'AppointmentState.loading()';
 }
 
 
@@ -109,43 +109,43 @@ String toString() {
 /// @nodoc
 
 
-class Success<T> implements AppointmentState<T> {
+class Success implements AppointmentState {
   const Success(this.data);
   
 
- final  T data;
+ final  AppointmentStatusData data;
 
 /// Create a copy of AppointmentState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$SuccessCopyWith<T, Success<T>> get copyWith => _$SuccessCopyWithImpl<T, Success<T>>(this, _$identity);
+$SuccessCopyWith<Success> get copyWith => _$SuccessCopyWithImpl<Success>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Success<T>&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Success&&(identical(other.data, data) || other.data == data));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,data);
 
 @override
 String toString() {
-  return 'AppointmentState<$T>.success(data: $data)';
+  return 'AppointmentState.success(data: $data)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $SuccessCopyWith<T,$Res> implements $AppointmentStateCopyWith<T, $Res> {
-  factory $SuccessCopyWith(Success<T> value, $Res Function(Success<T>) _then) = _$SuccessCopyWithImpl;
+abstract mixin class $SuccessCopyWith<$Res> implements $AppointmentStateCopyWith<$Res> {
+  factory $SuccessCopyWith(Success value, $Res Function(Success) _then) = _$SuccessCopyWithImpl;
 @useResult
 $Res call({
- T data
+ AppointmentStatusData data
 });
 
 
@@ -153,19 +153,19 @@ $Res call({
 
 }
 /// @nodoc
-class _$SuccessCopyWithImpl<T,$Res>
-    implements $SuccessCopyWith<T, $Res> {
+class _$SuccessCopyWithImpl<$Res>
+    implements $SuccessCopyWith<$Res> {
   _$SuccessCopyWithImpl(this._self, this._then);
 
-  final Success<T> _self;
-  final $Res Function(Success<T>) _then;
+  final Success _self;
+  final $Res Function(Success) _then;
 
 /// Create a copy of AppointmentState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? data = freezed,}) {
-  return _then(Success<T>(
-freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as T,
+@pragma('vm:prefer-inline') $Res call({Object? data = null,}) {
+  return _then(Success(
+null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as AppointmentStatusData,
   ));
 }
 
@@ -175,7 +175,7 @@ as T,
 /// @nodoc
 
 
-class Failure<T> implements AppointmentState<T> {
+class Failure implements AppointmentState {
   const Failure(this.error);
   
 
@@ -185,13 +185,13 @@ class Failure<T> implements AppointmentState<T> {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$FailureCopyWith<T, Failure<T>> get copyWith => _$FailureCopyWithImpl<T, Failure<T>>(this, _$identity);
+$FailureCopyWith<Failure> get copyWith => _$FailureCopyWithImpl<Failure>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Failure<T>&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Failure&&(identical(other.error, error) || other.error == error));
 }
 
 
@@ -200,15 +200,15 @@ int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
-  return 'AppointmentState<$T>.failure(error: $error)';
+  return 'AppointmentState.failure(error: $error)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $FailureCopyWith<T,$Res> implements $AppointmentStateCopyWith<T, $Res> {
-  factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) _then) = _$FailureCopyWithImpl;
+abstract mixin class $FailureCopyWith<$Res> implements $AppointmentStateCopyWith<$Res> {
+  factory $FailureCopyWith(Failure value, $Res Function(Failure) _then) = _$FailureCopyWithImpl;
 @useResult
 $Res call({
  String error
@@ -219,17 +219,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$FailureCopyWithImpl<T,$Res>
-    implements $FailureCopyWith<T, $Res> {
+class _$FailureCopyWithImpl<$Res>
+    implements $FailureCopyWith<$Res> {
   _$FailureCopyWithImpl(this._self, this._then);
 
-  final Failure<T> _self;
-  final $Res Function(Failure<T>) _then;
+  final Failure _self;
+  final $Res Function(Failure) _then;
 
 /// Create a copy of AppointmentState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
-  return _then(Failure<T>(
+  return _then(Failure(
 null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as String,
   ));

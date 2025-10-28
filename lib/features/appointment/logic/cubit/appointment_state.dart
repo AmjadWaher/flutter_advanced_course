@@ -4,10 +4,10 @@ import 'package:completed_flutter_projects/features/appointment/data/models/appo
 part 'appointment_state.freezed.dart';
 
 @freezed
-class AppointmentState<T> with _$AppointmentState {
+class AppointmentState with _$AppointmentState {
   const factory AppointmentState.initial() = _Initial;
   const factory AppointmentState.loading() = Loading;
-  const factory AppointmentState.success(T data) = Success<T>;
+  const factory AppointmentState.success(AppointmentStatusData data) = Success;
   const factory AppointmentState.failure(String error) = Failure;
 }
 
