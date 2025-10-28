@@ -1,6 +1,7 @@
 import 'package:completed_flutter_projects/core/networking/api_constants.dart';
 import 'package:completed_flutter_projects/features/appointment/data/api/appointment_api_constants.dart';
 import 'package:completed_flutter_projects/features/appointment/data/models/appointment_response.dart';
+import 'package:completed_flutter_projects/features/appointment/data/models/appointments_response.dart';
 import 'package:completed_flutter_projects/features/appointment/data/models/reschedule_request.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -16,10 +17,12 @@ abstract class AppointmentApiService {
   Future<AppointmentsResponse> getAppointmentByPatientId();
 
   @PUT('${AppointmentApiConstants.cancelAppointment}/{appointmentId}')
-  Future<void> cancelAppointment(@Path("appointmentId") int appointmentId);
+  Future<AppointmentResponse> cancelAppointment(
+    @Path("appointmentId") int appointmentId,
+  );
 
   @PUT(AppointmentApiConstants.rescheduleAppointment)
-  Future<void> rescheduleAppointment(
+  Future<AppointmentResponse> rescheduleAppointment(
     @Body() RescheduleRequest rescheduleRequest,
   );
 }

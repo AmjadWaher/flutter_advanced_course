@@ -3,6 +3,7 @@ import 'package:completed_flutter_projects/core/networking/api_error_handler.dar
 import 'package:completed_flutter_projects/core/networking/api_result.dart';
 import 'package:completed_flutter_projects/features/appointment/data/api/appointment_api_service.dart';
 import 'package:completed_flutter_projects/features/appointment/data/models/appointment_response.dart';
+import 'package:completed_flutter_projects/features/appointment/data/models/appointments_response.dart';
 import 'package:completed_flutter_projects/features/appointment/data/models/reschedule_request.dart';
 
 class AppointmentRepository {
@@ -20,7 +21,7 @@ class AppointmentRepository {
     }
   }
 
-  Future<ApiResult<void>> cancelAppointment(int appointmentId) async {
+  Future<ApiResult<AppointmentResponse>> cancelAppointment(int appointmentId) async {
     try {
       final response = await myAppointmentApiService.cancelAppointment(
         appointmentId,
@@ -32,7 +33,7 @@ class AppointmentRepository {
     }
   }
 
-  Future<ApiResult<void>> rescheduleAppointment(
+  Future<ApiResult<AppointmentResponse>> rescheduleAppointment(
     RescheduleRequest request,
   ) async {
     try {

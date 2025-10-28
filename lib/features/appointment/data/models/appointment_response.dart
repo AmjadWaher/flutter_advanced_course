@@ -1,23 +1,20 @@
 import 'package:completed_flutter_projects/features/appointment/data/models/appointment.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'appointment_response.g.dart';
 
 @JsonSerializable()
-class AppointmentsResponse {
+class AppointmentResponse {
   int code;
   String message;
-  List<Appointment> data;
+  Appointment data;
 
-  AppointmentsResponse({
+  AppointmentResponse({
     required this.code,
     required this.message,
     required this.data,
   });
 
-  factory AppointmentsResponse.fromJson(Map<String, dynamic> json) =>
-      _$AppointmentsResponseFromJson(json);
+  factory AppointmentResponse.fromJsond(Map<String, dynamic> json) =>
+      _$AppointmentResponseFromJson(json);
 }
-
-
-

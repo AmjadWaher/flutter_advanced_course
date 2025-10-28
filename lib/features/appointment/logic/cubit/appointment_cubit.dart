@@ -6,6 +6,10 @@ import 'package:completed_flutter_projects/features/appointment/data/repository/
 import 'package:completed_flutter_projects/features/appointment/logic/cubit/appointment_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+List<Appointment> upcoming = [];
+List<Appointment> completed = [];
+List<Appointment> cancelled = [];
+
 class AppointmentCubit extends Cubit<AppointmentState> {
   final AppointmentRepository _myAppointmentRepository;
   AppointmentCubit(this._myAppointmentRepository)
@@ -17,21 +21,28 @@ class AppointmentCubit extends Cubit<AppointmentState> {
 
     switch (response) {
       case api_result.Success(:final data):
-        final appointmentStatusData = AppointmentStatusData(
-          upcoming:
-              data.data
-                  .where((a) => a.status == AppointmentStatus.Pending)
-                  .toList(),
-          completed:
-              data.data
-                  .where((a) => a.status == AppointmentStatus.Completed)
-                  .toList(),
-          cancelled:
-              data.data
-                  .where((a) => a.status == AppointmentStatus.Cancelled)
-                  .toList(),
+        upcoming =
+            data.data
+                .where((a) => a.status == AppointmentStatus.Pending)
+                .toList();
+        completed =
+            data.data
+                .where((a) => a.status == AppointmentStatus.Completed)
+                .toList();
+        cancelled =
+            data.data
+                .where((a) => a.status == AppointmentStatus.Cancelled)
+                .toList();
+
+        emit(
+          AppointmentState.success(
+            AppointmentStatusData(
+              upcoming: upcoming,
+              completed: completed,
+              cancelled: cancelled,
+            ),
+          ),
         );
-        emit(AppointmentState.success(appointmentStatusData));
         break;
 
       case api_result.Failure(:final error):
@@ -40,15 +51,24 @@ class AppointmentCubit extends Cubit<AppointmentState> {
     }
   }
 
-  void emitCancelAppointment(int appointmentId) async {
+  void emitCancelAppointment(Appointment appointment) async {
     emit(AppointmentState.loading());
     final response = await _myAppointmentRepository.cancelAppointment(
-      appointmentId,
+      appointment.id,
     );
-
     switch (response) {
       case api_result.Success(:final data):
-        emit(AppointmentState<void>.success(data));
+        upcoming.remove(appointment);
+        cancelled.add(data.data);
+        emit(
+          AppointmentState.success(
+            AppointmentStatusData(
+              upcoming: upcoming,
+              completed: completed,
+              cancelled: cancelled,
+            ),
+          ),
+        );
         break;
 
       case api_result.Failure(:final error):
@@ -63,9 +83,20 @@ class AppointmentCubit extends Cubit<AppointmentState> {
       request,
     );
 
+    final appointment = upcoming.where((a) => a.id == request.id).first;
     switch (response) {
       case api_result.Success(:final data):
-        emit(AppointmentState<void>.success(data));
+        upcoming.remove(appointment);
+        upcoming.add(data.data);
+        emit(
+          AppointmentState.success(
+            AppointmentStatusData(
+              upcoming: upcoming,
+              completed: completed,
+              cancelled: cancelled,
+            ),
+          ),
+        );
         break;
 
       case api_result.Failure(:final error):
