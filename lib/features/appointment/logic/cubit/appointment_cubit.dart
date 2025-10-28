@@ -1,9 +1,9 @@
 import 'package:completed_flutter_projects/core/networking/api_result.dart'
     as api_result;
-import 'package:completed_flutter_projects/features/my_appointment/data/models/appointment.dart';
-import 'package:completed_flutter_projects/features/my_appointment/data/models/reschedule_request.dart';
-import 'package:completed_flutter_projects/features/my_appointment/data/repository/appointment_repository.dart';
-import 'package:completed_flutter_projects/features/my_appointment/logic/cubit/appointment_state.dart';
+import 'package:completed_flutter_projects/features/appointment/data/models/appointment.dart';
+import 'package:completed_flutter_projects/features/appointment/data/models/reschedule_request.dart';
+import 'package:completed_flutter_projects/features/appointment/data/repository/appointment_repository.dart';
+import 'package:completed_flutter_projects/features/appointment/logic/cubit/appointment_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppointmentCubit extends Cubit<AppointmentState> {

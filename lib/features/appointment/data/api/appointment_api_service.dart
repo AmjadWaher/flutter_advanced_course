@@ -1,7 +1,7 @@
 import 'package:completed_flutter_projects/core/networking/api_constants.dart';
-import 'package:completed_flutter_projects/features/my_appointment/data/api/appointment_api_constants.dart';
-import 'package:completed_flutter_projects/features/my_appointment/data/models/appointment_response.dart';
-import 'package:completed_flutter_projects/features/my_appointment/data/models/reschedule_request.dart';
+import 'package:completed_flutter_projects/features/appointment/data/api/appointment_api_constants.dart';
+import 'package:completed_flutter_projects/features/appointment/data/models/appointment_response.dart';
+import 'package:completed_flutter_projects/features/appointment/data/models/reschedule_request.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 

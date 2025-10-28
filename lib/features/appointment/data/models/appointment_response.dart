@@ -1,4 +1,4 @@
-import 'package:completed_flutter_projects/features/my_appointment/data/models/appointment.dart';
+import 'package:completed_flutter_projects/features/appointment/data/models/appointment.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'appointment_response.g.dart';
