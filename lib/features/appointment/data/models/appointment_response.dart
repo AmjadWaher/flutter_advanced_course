@@ -15,6 +15,6 @@ class AppointmentResponse {
     required this.data,
   });
 
-  factory AppointmentResponse.fromJsond(Map<String, dynamic> json) =>
+  factory AppointmentResponse.fromJson(Map<String, dynamic> json) =>
       _$AppointmentResponseFromJson(json);
 }
