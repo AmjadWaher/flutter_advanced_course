@@ -32,9 +32,6 @@ class AppointmentCubit extends Cubit<AppointmentState> {
 
     switch (response) {
       case api_result.Success(:final data):
-        upcoming.clear();
-        completed.clear();
-        cancelled.clear();
         for (var a in data.data) {
           switch (a.status) {
             case AppointmentStatus.Pending:

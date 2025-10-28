@@ -1,4 +1,3 @@
-import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'appointment.g.dart';
@@ -10,17 +9,27 @@ class Appointment {
   int id;
   DateTime time;
   DateTime date;
-  String paymentMethod;
   AppointmentStatus status;
-  Doctor doctor;
+  String doctorName;
+  String doctorImageUrl;
+  String doctorSpecialty;
+  String doctorClinic;
+  String doctorPhone;
+  String doctorStartTime;
+  String doctorEndTime;
 
   Appointment({
     required this.id,
     required this.time,
     required this.date,
-    required this.paymentMethod,
     required this.status,
-    required this.doctor,
+    required this.doctorName,
+    required this.doctorImageUrl,
+    required this.doctorSpecialty,
+    required this.doctorClinic,
+    required this.doctorPhone,
+    required this.doctorStartTime,
+    required this.doctorEndTime,
   });
 
   factory Appointment.fromJson(Map<String, dynamic> json) =>

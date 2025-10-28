@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:completed_flutter_projects/core/networking/api_error_handler.dart';
 import 'package:completed_flutter_projects/core/networking/api_result.dart';
 import 'package:completed_flutter_projects/features/appointment/data/api/appointment_api_service.dart';

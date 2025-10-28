@@ -21,5 +21,8 @@ ThemeData appTheme() {
       shadowColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
     ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.white,
+    )
   );
 }
