@@ -12,7 +12,7 @@ platform :android do
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       testers: "amjadwaher623@gmail.com",
-      release_notes: "Handling API Appointment"
+      release_notes: "Completed My Appointment Screen"
     )
   end
 end
