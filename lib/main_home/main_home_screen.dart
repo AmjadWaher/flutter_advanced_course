@@ -1,10 +1,11 @@
 import 'package:completed_flutter_projects/core/di/dependence_injection.dart';
+import 'package:completed_flutter_projects/features/appointment/logic/cubit/appointment_cubit.dart';
+import 'package:completed_flutter_projects/features/appointment/ui/screens/my_appointment_screen.dart';
 import 'package:completed_flutter_projects/features/home/logic/home_cubit.dart';
 import 'package:completed_flutter_projects/features/home/ui/home_screen.dart';
 import 'package:completed_flutter_projects/main_home/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 class MainHomeScreen extends StatefulWidget {
   const MainHomeScreen({super.key});
@@ -17,6 +18,14 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   int selectedTap = 0;
   List<Widget> items = [];
 
+  Widget _buildAppointmentsScreen() {
+    return BlocProvider(
+      key: ValueKey(DateTime.now().millisecondsSinceEpoch),
+      create: (context) => AppointmentCubit(getIt())..emitAppointmentStates(),
+      child: MyAppointmentScreen(),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -26,10 +35,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
             (context) => HomeCubit(getIt())..emitSpecialtiesAndDoctorsStates(),
         child: const HomeScreen(),
       ),
-      // BlocProvider(
-      //   create: (context) => AppointmentCubit(getIt()),
-      //   child: MyAppointmentScreen(),
-      // ),
+      _buildAppointmentsScreen(),
 
       // const ProfileScreen(),
     ];
@@ -38,7 +44,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(index: selectedTap, children: items),
+      body: IndexedStack( index: selectedTap, children: items),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: CustomBottomNavigationBar(
         pageIndex: selectedTap,
@@ -47,6 +53,9 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
             setState(() {
               selectedTap = index;
             });
+            if (index == 1) {
+              items[1] = _buildAppointmentsScreen();
+            }
           }
         },
       ),

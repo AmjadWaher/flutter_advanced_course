@@ -1,3 +1,4 @@
+import 'package:completed_flutter_projects/core/helpers/extensions.dart';
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
 import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
@@ -24,7 +25,7 @@ class AboutDoctorScreen extends StatelessWidget {
           Text('Working Time', style: TextStyles.font16DarkBlueSemiBold),
           verticalSpace(12),
           Text(
-            '${doctor.workDays}, ${doctor.startTime} - ${doctor.endTime}',
+            '${doctor.workDays}, ${doctor.startTime.formatTimeTo12Hour()} - ${doctor.endTime.formatTimeTo12Hour()}',
             style: TextStyles.font14DarkSilverRegular,
           ),
         ],

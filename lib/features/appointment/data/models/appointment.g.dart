@@ -8,7 +8,7 @@ part of 'appointment.dart';
 
 Appointment _$AppointmentFromJson(Map<String, dynamic> json) => Appointment(
   id: (json['id'] as num).toInt(),
-  time: DateTime.parse(json['time'] as String),
+  time: json['time'] as String,
   date: DateTime.parse(json['date'] as String),
   status: $enumDecode(_$AppointmentStatusEnumMap, json['status']),
   doctorName: json['doctorName'] as String,
@@ -23,7 +23,7 @@ Appointment _$AppointmentFromJson(Map<String, dynamic> json) => Appointment(
 Map<String, dynamic> _$AppointmentToJson(Appointment instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'time': instance.time.toIso8601String(),
+      'time': instance.time,
       'date': instance.date.toIso8601String(),
       'status': _$AppointmentStatusEnumMap[instance.status]!,
       'doctorName': instance.doctorName,

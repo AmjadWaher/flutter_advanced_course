@@ -26,25 +26,29 @@ class AppointmentCubit extends Cubit<AppointmentState> {
     );
   }
 
+  void storeAppointments(List<Appointment> appointments) {
+    for (var a in appointments) {
+      switch (a.status) {
+        case AppointmentStatus.Pending:
+          upcoming.add(a);
+          break;
+        case AppointmentStatus.Completed:
+          completed.add(a);
+          break;
+        case AppointmentStatus.Cancelled:
+          cancelled.add(a);
+          break;
+      }
+    }
+  }
+
   void emitAppointmentStates() async {
     emit(AppointmentState.loading());
     final response = await _myAppointmentRepository.getAppointmentByPatientId();
 
     switch (response) {
       case api_result.Success(:final data):
-        for (var a in data.data) {
-          switch (a.status) {
-            case AppointmentStatus.Pending:
-              upcoming.add(a);
-              break;
-            case AppointmentStatus.Completed:
-              completed.add(a);
-              break;
-            case AppointmentStatus.Cancelled:
-              cancelled.add(a);
-              break;
-          }
-        }
+        storeAppointments(data.data);
         _emitCurrentAppointments();
         break;
       case api_result.Failure(:final error):
@@ -81,7 +85,7 @@ class AppointmentCubit extends Cubit<AppointmentState> {
     }
   }
 
-  void emitRescheduleAppointment(RescheduleRequest request) async {
+  Future<void> emitRescheduleAppointment(RescheduleRequest request) async {
     emit(AppointmentState.loading());
     final response = await _myAppointmentRepository.rescheduleAppointment(
       request,
