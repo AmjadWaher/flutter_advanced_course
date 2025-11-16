@@ -16,4 +16,5 @@ class AppColors {
   static const Color antiFlashWhite = Color(0xFFF2F4F7);
   static const Color darkSilver = Color(0xFF6F6F6F);
   static const Color limeGreen = Color(0xFF22C55E);
+  static const Color coralRed = Color(0xFFFF4C5E);
 }

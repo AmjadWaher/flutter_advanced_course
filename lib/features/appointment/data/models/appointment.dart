@@ -7,7 +7,7 @@ enum AppointmentStatus { Pending, Completed, Cancelled }
 @JsonSerializable()
 class Appointment {
   int id;
-  DateTime time;
+  String time;
   DateTime date;
   AppointmentStatus status;
   String doctorName;

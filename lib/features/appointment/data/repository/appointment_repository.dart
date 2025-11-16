@@ -6,13 +6,13 @@ import 'package:completed_flutter_projects/features/appointment/data/models/appo
 import 'package:completed_flutter_projects/features/appointment/data/models/reschedule_request.dart';
 
 class AppointmentRepository {
-  final AppointmentApiService myAppointmentApiService;
-  AppointmentRepository(this.myAppointmentApiService);
+  final AppointmentApiService appointmentApiService;
+  AppointmentRepository(this.appointmentApiService);
 
   Future<ApiResult<AppointmentsResponse>> getAppointmentByPatientId() async {
     try {
       final response =
-          await myAppointmentApiService.getAppointmentByPatientId();
+          await appointmentApiService.getAppointmentByPatientId();
 
       return ApiResult.success(response);
     } catch (error) {
@@ -22,7 +22,7 @@ class AppointmentRepository {
 
   Future<ApiResult<AppointmentResponse>> cancelAppointment(int appointmentId) async {
     try {
-      final response = await myAppointmentApiService.cancelAppointment(
+      final response = await appointmentApiService.cancelAppointment(
         appointmentId,
       );
 
@@ -36,7 +36,7 @@ class AppointmentRepository {
     RescheduleRequest request,
   ) async {
     try {
-      final response = await myAppointmentApiService.rescheduleAppointment(
+      final response = await appointmentApiService.rescheduleAppointment(
         request,
       );
 

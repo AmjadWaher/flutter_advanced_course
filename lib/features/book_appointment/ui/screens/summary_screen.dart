@@ -1,3 +1,4 @@
+import 'package:completed_flutter_projects/core/helpers/extensions.dart';
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/themes/app_colors.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
@@ -13,10 +14,11 @@ class SummaryScreen extends StatelessWidget {
   const SummaryScreen({super.key, required this.doctor});
   final Doctor doctor;
 
-  String getDateAndTime(DateTime date, String time) {
-    final fulDate = DateFormat('EEEE, dd MMMM yyyy').format(date);
+  String getFormattedDateAndTime(DateTime date, String timeString) {
+    final formattedDate = DateFormat('EEEE, dd MMMM yyyy').format(date);
+    final formattedTime = timeString.formatTimeTo12Hour();
 
-    return '$fulDate\n$time';
+    return '$formattedDate\n$formattedTime';
   }
 
   @override
@@ -29,7 +31,10 @@ class SummaryScreen extends StatelessWidget {
         verticalSpace(5),
         BookingDetailsCard(
           title: 'Date & Time',
-          subtitle: getDateAndTime(state.selectedDate!, state.selectedTime!),
+          subtitle: getFormattedDateAndTime(
+            state.selectedDate!,
+            state.selectedTime!,
+          ),
           icon: 'assets/svgs/calender.svg',
           color: AppColors.mainBlue,
         ),

@@ -1,3 +1,4 @@
+import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
 import 'package:completed_flutter_projects/core/widgets/app_top_bar.dart';
 import 'package:completed_flutter_projects/core/widgets/filter_button.dart';
@@ -9,6 +10,7 @@ import 'package:completed_flutter_projects/features/home/data/models/doctor.dart
 import 'package:completed_flutter_projects/features/home/data/models/specialty_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AllDoctorsScreen extends StatelessWidget {
   const AllDoctorsScreen({
@@ -53,14 +55,7 @@ class AllDoctorsScreen extends StatelessWidget {
                   switch (state) {
                     case Success():
                       if ((state.doctors as List).isEmpty) {
-                        return Expanded(
-                          child: Center(
-                            child: Text(
-                              'No doctors found',
-                              style: TextStyles.font16BlackRegular,
-                            ),
-                          ),
-                        );
+                        return Expanded(child: emptyStateView());
                       } else {
                         return DoctorsListView(doctorsList: state.doctors);
                       }
@@ -74,6 +69,37 @@ class AllDoctorsScreen extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget emptyStateView() {
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 50.w),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/images/medicine.png',
+              width: 200.w,
+              height: 200.w,
+              fit: BoxFit.contain,
+            ),
+            verticalSpace(24),
+            Text(
+              'No Doctors Found',
+              style: TextStyles.font17Black87Bold,
+              textAlign: TextAlign.center,
+            ),
+            verticalSpace(10),
+            Text(
+              'There are no doctors available in this specialty right now.',
+              style: TextStyles.font14Grey600Regular,
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );

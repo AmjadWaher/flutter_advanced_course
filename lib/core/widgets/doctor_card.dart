@@ -54,7 +54,7 @@ class DoctorCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  doctor.username.capitalizeEachWork(),
+                  doctor.username.capitalizeEachWord(),
                   style: TextStyles.font16DarkBlueBold,
                   overflow: TextOverflow.ellipsis,
                 ),

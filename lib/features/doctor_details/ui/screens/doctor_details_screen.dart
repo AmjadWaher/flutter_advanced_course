@@ -23,7 +23,7 @@ class DoctorDetailsScreen extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              AppTopBar(title: doctor.username.replaceFirstDot().capitalizeEachWork()),
+              AppTopBar(title: doctor.username.replaceFirstDot().capitalizeEachWord()),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(

@@ -21,10 +21,11 @@ class BookingDetailsScreen extends StatelessWidget {
   final Doctor doctor;
   final BookingState bookingState;
 
-  String getDateAndTime(DateTime date, String time) {
-    final fulDate = DateFormat('EEEE, dd MMMM yyyy').format(date);
+  String getFormattedDateAndTime(DateTime date, String timeString) {
+    final formattedDate = DateFormat('EEEE, dd MMMM yyyy').format(date);
+    final formattedTime = timeString.formatTimeTo12Hour();
 
-    return '$fulDate\n$time';
+    return '$formattedDate\n$formattedTime';
   }
 
   @override
@@ -69,7 +70,7 @@ class BookingDetailsScreen extends StatelessWidget {
                     verticalSpace(5),
                     BookingDetailsCard(
                       title: 'Date & Time',
-                      subtitle: getDateAndTime(
+                      subtitle: getFormattedDateAndTime(
                         bookingState.selectedDate!,
                         bookingState.selectedTime!,
                       ),

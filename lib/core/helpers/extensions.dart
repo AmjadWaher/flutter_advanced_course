@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 extension Navigation on BuildContext {
   Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
@@ -29,7 +30,7 @@ extension StringExtensions on String {
     return replaceFirst(RegExp(r'.'), ' ', 2);
   }
 
-  String capitalizeEachWork() {
+  String capitalizeEachWord() {
     bool hasDot = contains('.');
 
     return split(RegExp(r'[ .]+'))
@@ -39,6 +40,12 @@ extension StringExtensions on String {
               : '';
         })
         .join(hasDot ? '. ' : ' ');
+  }
+
+  String formatTimeTo12Hour() {
+    final parsedTime = DateFormat('hh:mm:ss').parse(this);
+
+    return DateFormat('hh:mm a').format(parsedTime);
   }
 }
 
