@@ -19,7 +19,7 @@ class PaymentCubit extends Cubit<PaymentState> {
   }
 
   Future<void> payForBooking(int appointmentId) async {
-    emit(state.copyWith(isLoading: true));
+    emit(state.copyWith(isLoading: true, isError: false, isSuccess: false));
     final response = await _paymentRepository.createPaymentIntent(
       PaymentRequest(
         appointmentId: appointmentId,
@@ -60,10 +60,11 @@ class PaymentCubit extends Cubit<PaymentState> {
   }
 
   void savedCards() async {
+    emit(state.copyWith(isLoading: true, isSuccess: false, isError: false));
     final response = await _paymentRepository.savedCards();
     switch (response) {
       case api_result.Success(:final data):
-        emit(state.copyWith(savedCards: data.data));
+        emit(state.copyWith(savedCards: data.data, isLoading: false));
     }
   }
 

@@ -7,6 +7,7 @@ import 'package:completed_flutter_projects/core/widgets/app_text_button.dart';
 import 'package:completed_flutter_projects/features/book_appointment/data/models/credit_card.dart';
 import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/payment/payment_cubit.dart';
 import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/payment/payment_state.dart';
+import 'package:completed_flutter_projects/features/book_appointment/ui/widgets/saved_card_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +40,7 @@ class CreditCardModal extends StatelessWidget {
           verticalSpace(10),
           AppTextButton(
             buttonText: 'Add new card',
-            textStyle: TextStyles.font12WhiteMedium,
+            textStyle: TextStyles.font16WhiteMedium,
             onPressed: () {
               _addNewCard(context);
             },
@@ -50,16 +51,20 @@ class CreditCardModal extends StatelessWidget {
   }
 
   Widget _buildSavedCards() {
-    return BlocSelector<PaymentCubit, PaymentState, List<CreditCard>>(
-      selector: (state) {
-        return state.savedCards;
-      },
+    return BlocBuilder<PaymentCubit, PaymentState>(
       builder: (context, state) {
+        if (state.isLoading) {
+          return ListView.separated(
+            itemCount: 4,
+            itemBuilder: (context, index) => const SavedCardShimmer(),
+            separatorBuilder: (_, _) => verticalSpace(12),
+          );
+        }
         return ListView.builder(
-          itemCount: state.length,
+          itemCount: state.savedCards.length,
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            return _buildCardPayment(context, state[index]);
+            return _buildCardPayment(context, state.savedCards[index]);
           },
         );
       },
@@ -67,26 +72,37 @@ class CreditCardModal extends StatelessWidget {
   }
 
   Widget _buildCardPayment(BuildContext context, CreditCard card) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 5.h),
-      child: ListTile(
-        leading: SvgPicture.asset(
-          CreditCardIcons.getIcon(card.brand),
-          fit: BoxFit.cover,
-          width: 35.w,
-          height: 35.w,
+    return InkWell(
+      onTap: () {
+        context.read<PaymentCubit>().selectCardToPayment(card);
+        context.pop();
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+        child: Row(
+          children: [
+            SvgPicture.asset(
+              CreditCardIcons.getIcon(card.brand),
+              fit: BoxFit.cover,
+              width: 40.w,
+              height: 40.w,
+            ),
+            horizontalSpace(10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(card.brand, style: TextStyles.font15DarkBlueMedium),
+                verticalSpace(8),
+                Text(
+                  card.brand == 'amex'
+                      ? '**** ****** *${card.last4}'
+                      : '**** **** **** ${card.last4}',
+                  style: TextStyles.font12Grey900Regular,
+                ),
+              ],
+            ),
+          ],
         ),
-        title: Text(card.brand, style: TextStyles.font14DarkBlueMedium),
-        subtitle: Text(
-          card.brand == 'amex'
-              ? '**** ****** *${card.last4}'
-              : '**** **** **** ${card.last4}',
-          style: TextStyles.font11GreyReqular,
-        ),
-        onTap: () {
-          context.read<PaymentCubit>().selectCardToPayment(card);
-          context.pop();
-        },
       ),
     );
   }
