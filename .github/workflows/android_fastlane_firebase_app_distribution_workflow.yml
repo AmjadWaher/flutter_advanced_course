@@ -39,7 +39,7 @@ jobs:
       - name: Build and Distribute App
         env:
           CI: true
-          FLUTTER_DISABLE_FILE_WATCHER: true
+          WATCHER_USE_POLLING: true
           FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
         run: |
           bundle exec fastlane android firebase_distribution
