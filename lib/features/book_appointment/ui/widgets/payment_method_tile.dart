@@ -39,7 +39,7 @@ class PaymentMethodTile extends StatelessWidget {
                 card?.brand == CardType.amex.name
                     ? '**** ******* *${card?.last4}'
                     : '**** **** **** ${card?.last4}',
-                style: TextStyles.font11DarkBlueReqular,
+                style: TextStyles.font11DarkBlueRegular,
               ),
     );
   }

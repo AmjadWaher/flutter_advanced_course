@@ -11,12 +11,12 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: Colors.white,
   );
-  static TextStyle font11GreyReqular = TextStyle(
+  static TextStyle font11Grey900Regular = TextStyle(
     fontSize: 11.sp,
     fontWeight: FontWeightHelper.regular,
     color: Colors.grey.shade900,
   );
-  static TextStyle font11DarkBlueReqular = TextStyle(
+  static TextStyle font11DarkBlueRegular = TextStyle(
     fontSize: 11.sp,
     fontWeight: FontWeightHelper.regular,
     color: AppColors.darkBlue,
@@ -25,6 +25,14 @@ class TextStyles {
   );
 
   // ------------ 12 sp ------------
+
+  static TextStyle font12Grey900Regular = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: Colors.grey.shade900,
+    letterSpacing: 1,
+    wordSpacing: 2,
+  );
 
   static TextStyle font12GrayRegular = TextStyle(
     fontSize: 12.sp,
@@ -198,6 +206,7 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: AppColors.darkBlue,
   );
+
   static TextStyle font15DarkBlueBold = TextStyle(
     fontSize: 15.sp,
     fontWeight: FontWeightHelper.bold,
@@ -245,6 +254,11 @@ class TextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.semiBold,
     color: AppColors.richBlack,
+  );
+  static TextStyle font16WhiteMedium = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: Colors.white,
   );
 
   // ------------ 17 sp ------------
