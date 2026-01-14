@@ -66,7 +66,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         width: 27.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          image: DecorationImage(
+          image: const DecorationImage(
             image: AssetImage('assets/images/male_face_avatar.png'),
           ),
         ),

@@ -19,7 +19,7 @@ class DoctorSpecialitySeeAllText extends StatelessWidget {
     return Row(
       children: [
         Text('Doctor Speciality', style: TextStyles.font18DarkBlueSemiBold),
-        Spacer(),
+        const Spacer(),
         TextButton(
           onPressed: () {
             context.pushNamed(

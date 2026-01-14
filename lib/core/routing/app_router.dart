@@ -1,8 +1,10 @@
 import 'package:completed_flutter_projects/core/di/dependence_injection.dart';
 import 'package:completed_flutter_projects/core/routing/routes.dart';
 import 'package:completed_flutter_projects/features/all_doctors/ui/screens/all_doctors_screen.dart';
-import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_cubit.dart';
-import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_state.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking/booking_cubit.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking/booking_state.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/payment/payment_cubit.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/payment/payment_state.dart';
 import 'package:completed_flutter_projects/features/book_appointment/ui/screens/book_appointment_screen.dart';
 import 'package:completed_flutter_projects/features/book_appointment/ui/screens/booking_details_screen.dart';
 import 'package:completed_flutter_projects/features/doctor_details/ui/screens/doctor_details_screen.dart';
@@ -77,17 +79,22 @@ class AppRouter {
       case Routes.bookAppointmentScreen:
         return MaterialPageRoute(
           builder:
-              (_) => BlocProvider(
-                create: (context) => BookingCubit(getIt()),
+              (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider(create: (context) => BookingCubit(getIt())),
+                  BlocProvider(create: (context) => PaymentCubit(getIt())),
+                ],
                 child: BookAppointmentScreen(doctor: arguments as Doctor),
               ),
         );
       case Routes.bookingDetailsScreen:
+        final args = (arguments as Map<String, dynamic>);
         return MaterialPageRoute(
           builder:
               (context) => BookingDetailsScreen(
-                doctor: (arguments as Map<String, dynamic>)['doctor'] as Doctor,
-                bookingState: (arguments)['bookingState'] as BookingState,
+                doctor: args['doctor'] as Doctor,
+                bookingState: args['bookingState'] as BookingState,
+                paymentState: args['paymentState'] as PaymentState,
               ),
         );
       default:

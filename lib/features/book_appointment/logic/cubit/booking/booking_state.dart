@@ -6,8 +6,8 @@ abstract class BookingState with _$BookingState {
   const factory BookingState({
     DateTime? selectedDate,
     String? selectedTime,
-    @Default('Cash') String paymentMethod,
-    @Default(false) bool isConfirmed,
+    int? appointmentId,
+    @Default(false) bool isSuccess,
     @Default(false) bool isLoading,
     @Default(false) bool isError,
     String? errorMessage,

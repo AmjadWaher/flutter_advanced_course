@@ -1,7 +1,9 @@
 import 'package:completed_flutter_projects/core/helpers/extensions.dart';
 import 'package:completed_flutter_projects/core/routing/routes.dart';
-import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_cubit.dart';
-import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_state.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking/booking_cubit.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking/booking_state.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/payment/payment_cubit.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/payment/payment_state.dart';
 import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,17 +14,48 @@ class BookAppointmentBlocListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<BookingCubit, BookingState>(
-      listenWhen: (previous, current) => current.isError || current.isConfirmed,
-      listener: (context, state) {
-        if (state.isConfirmed) {
-          context.pushReplacementNamed(
-            Routes.bookingDetailsScreen,
-            arguments: {'doctor': doctor, 'bookingState': state},
-          );
-        }
-      },
-      child: SizedBox.shrink(),
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<BookingCubit, BookingState>(
+          listener: (context, state) {
+            if (state.isSuccess && state.appointmentId != null) {
+              if (context.read<PaymentCubit>().state.paymentMethod == 'Cash') {
+                context.read<PaymentCubit>().payCash(state.appointmentId!);
+              } else {
+                context.read<PaymentCubit>().payForBooking(
+                  state.appointmentId!,
+                );
+              }
+            }
+            if (state.isError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.errorMessage ?? 'Booking failed')),
+              );
+            }
+          },
+        ),
+        BlocListener<PaymentCubit, PaymentState>(
+          listener: (context, state) {
+            if (state.isSuccess) {
+              final bookingState = context.read<BookingCubit>().state;
+              context.pushReplacementNamed(
+                Routes.bookingDetailsScreen,
+                arguments: {
+                  'doctor': doctor,
+                  'bookingState': bookingState,
+                  'paymentState': state,
+                },
+              );
+            }
+            if (state.isError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.errorMessage ?? 'Payment failed')),
+              );
+            }
+          },
+        ),
+      ],
+      child: const SizedBox.shrink(),
     );
   }
 }

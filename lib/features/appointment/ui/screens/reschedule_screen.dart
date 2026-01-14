@@ -50,7 +50,7 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            AppTopBar(title: 'Reschedule'),
+            const AppTopBar(title: 'Reschedule'),
             verticalSpace(15),
             Expanded(
               child: Padding(
@@ -81,7 +81,7 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                         _selectTime(value);
                       },
                     ),
-                    Spacer(),
+                    const Spacer(),
                     BlocListener<AppointmentCubit, AppointmentState>(
                       listener: (context, state) {
                         if (state is Success) {
@@ -95,7 +95,7 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                             context: context,
                             barrierDismissible: false,
                             builder:
-                                (context) => Center(
+                                (context) => const Center(
                                   child: CircularProgressIndicator(
                                     color: AppColors.mainBlue,
                                   ),

@@ -22,7 +22,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     return BlocProvider(
       key: ValueKey(DateTime.now().millisecondsSinceEpoch),
       create: (context) => AppointmentCubit(getIt())..emitAppointmentStates(),
-      child: MyAppointmentScreen(),
+      child: const MyAppointmentScreen(),
     );
   }
 
@@ -44,7 +44,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack( index: selectedTap, children: items),
+      body: IndexedStack(index: selectedTap, children: items),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: CustomBottomNavigationBar(
         pageIndex: selectedTap,

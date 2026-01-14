@@ -13,9 +13,7 @@ class BookingRepository {
     BookingRequest bookingRequest,
   ) async {
     try {
-      final response = await _bookingApiService.submitBooking(
-        bookingRequest,
-      );
+      final response = await _bookingApiService.submitBooking(bookingRequest);
 
       return ApiResult.success(response);
     } catch (error) {

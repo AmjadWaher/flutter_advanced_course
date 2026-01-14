@@ -1,8 +1,7 @@
-class ApiConstants{
+class ApiConstants {
   static const String baseUrl = 'http://docapi.runasp.net/api/';
   static const String login = 'Account/login';
   static const String signup = 'Account/register';
-
 }
 
 class ApiErrors {

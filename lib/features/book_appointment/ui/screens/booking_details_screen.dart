@@ -6,7 +6,8 @@ import 'package:completed_flutter_projects/core/widgets/app_text_button.dart';
 import 'package:completed_flutter_projects/core/widgets/app_top_bar.dart';
 import 'package:completed_flutter_projects/core/widgets/booking_details_card.dart';
 import 'package:completed_flutter_projects/core/widgets/doctor_card.dart';
-import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_state.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking/booking_state.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/payment/payment_state.dart';
 import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,9 +18,11 @@ class BookingDetailsScreen extends StatelessWidget {
     super.key,
     required this.doctor,
     required this.bookingState,
+    required this.paymentState,
   });
   final Doctor doctor;
   final BookingState bookingState;
+  final PaymentState paymentState;
 
   String getFormattedDateAndTime(DateTime date, String timeString) {
     final formattedDate = DateFormat('EEEE, dd MMMM yyyy').format(date);
@@ -34,23 +37,23 @@ class BookingDetailsScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            AppTopBar(title: 'Details'),
+            const AppTopBar(title: 'Details'),
             Container(
               padding: EdgeInsets.symmetric(vertical: 60.h, horizontal: 60.h),
               child: Column(
                 children: [
                   Icon(
-                    bookingState.isError
+                    paymentState.isError
                         ? Icons.cancel_rounded
                         : Icons.check_circle_rounded,
                     size: 65.w,
                     color:
-                        bookingState.isError ? Colors.red : AppColors.limeGreen,
+                        paymentState.isError ? Colors.red : AppColors.limeGreen,
                   ),
                   verticalSpace(30),
                   Text(
-                    bookingState.isError
-                        ? bookingState.errorMessage!
+                    paymentState.isError
+                        ? 'Booking Not Confirmed'
                         : 'Booking Confirmed',
                     style: TextStyles.font20DarkBlueMedium,
                   ),
@@ -89,7 +92,7 @@ class BookingDetailsScreen extends StatelessWidget {
                       width: 80,
                       onTap: () {},
                     ),
-                    Spacer(),
+                    const Spacer(),
                     AppTextButton(
                       buttonText: 'Done',
                       textStyle: TextStyles.font16WhiteSemiBold,

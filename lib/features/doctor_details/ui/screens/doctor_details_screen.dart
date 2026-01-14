@@ -23,7 +23,9 @@ class DoctorDetailsScreen extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              AppTopBar(title: doctor.username.replaceFirstDot().capitalizeEachWord()),
+              AppTopBar(
+                title: doctor.username.replaceFirstDot().capitalizeEachWord(),
+              ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -34,8 +36,8 @@ class DoctorDetailsScreen extends StatelessWidget {
                     children: [
                       _showDoctorInfo(),
                       verticalSpace(24),
-                      TabBar(
-                        tabs: const [Tab(text: 'About'), Tab(text: 'Location')],
+                      const TabBar(
+                        tabs: [Tab(text: 'About'), Tab(text: 'Location')],
                       ),
                       verticalSpace(28),
                       Expanded(
@@ -50,7 +52,11 @@ class DoctorDetailsScreen extends StatelessWidget {
                       AppTextButton(
                         buttonText: 'Make An Appointment',
                         textStyle: TextStyles.font16WhiteSemiBold,
-                        onPressed: () => context.pushNamed(Routes.bookAppointmentScreen,arguments: doctor),
+                        onPressed:
+                            () => context.pushNamed(
+                              Routes.bookAppointmentScreen,
+                              arguments: doctor,
+                            ),
                       ),
                     ],
                   ),
@@ -65,11 +71,6 @@ class DoctorDetailsScreen extends StatelessWidget {
   }
 
   Widget _showDoctorInfo() {
-    return DoctorCard(
-      doctor: doctor,
-      height: 80,
-      width: 80,
-      onTap: () {},
-    );
+    return DoctorCard(doctor: doctor, height: 80, width: 80, onTap: () {});
   }
 }

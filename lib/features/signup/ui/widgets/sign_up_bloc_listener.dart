@@ -14,18 +14,19 @@ class SignUpBlocListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignUpCubit, SignUpState>(
-      listenWhen: (previous, current) =>
-          current is Loading || current is Success || current is Error,
+      listenWhen:
+          (previous, current) =>
+              current is Loading || current is Success || current is Error,
       listener: (context, state) {
         switch (state) {
           case Loading():
             showDialog(
-                context: context,
-                builder: (context) => Center(
-                      child: const CircularProgressIndicator(
-                        color: AppColors.mainBlue,
-                      ),
-                    ));
+              context: context,
+              builder:
+                  (context) => const Center(
+                    child: CircularProgressIndicator(color: AppColors.mainBlue),
+                  ),
+            );
             break;
 
           case Success(:final data):
@@ -40,18 +41,15 @@ class SignUpBlocListener extends StatelessWidget {
             break;
         }
       },
-      child: SizedBox.shrink(),
+      child: const SizedBox.shrink(),
     );
   }
 
   void setupSuccessState(BuildContext context, SignUpResponse response) {
     ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      snackBar(
-        title: 'Successfully',
-        content: response.message,
-      ),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(snackBar(title: 'Successfully', content: response.message));
   }
 
   void setupErrorState(BuildContext context, String message) {
@@ -59,10 +57,11 @@ class SignUpBlocListener extends StatelessWidget {
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       snackBar(
-          title: 'Error Occurred',
-          content: message,
-          backgroundColor: Colors.red,
-          icon: Icons.error_outline),
+        title: 'Error Occurred',
+        content: message,
+        backgroundColor: Colors.red,
+        icon: Icons.error_outline,
+      ),
     );
   }
 }

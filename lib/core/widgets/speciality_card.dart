@@ -29,8 +29,10 @@ class SpecialityCard extends StatelessWidget {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       child: Padding(
-        padding:
-            EdgeInsetsDirectional.symmetric(horizontal: 6.w, vertical: 3.h),
+        padding: EdgeInsetsDirectional.symmetric(
+          horizontal: 6.w,
+          vertical: 3.h,
+        ),
         child: Column(
           children: [
             CircleAvatar(
@@ -42,7 +44,7 @@ class SpecialityCard extends StatelessWidget {
                 width: (width ?? 25).w,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Text(
               specialtyModel.name,
               textAlign: TextAlign.center,

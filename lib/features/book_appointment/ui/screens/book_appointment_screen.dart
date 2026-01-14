@@ -31,21 +31,21 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            AppTopBar(title: 'Book Appointment'),
+            const AppTopBar(title: 'Book Appointment'),
             _progressStepper(pageIndex),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(right: 24.w, left: 24.w, bottom: 15.h),
                 child: PageView(
                   controller: _pageController,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   children: [
                     DateAndTimeScreen(
                       daysWork: widget.doctor.workDays,
                       startTime: widget.doctor.startTime,
                       endTime: widget.doctor.endTime,
                     ),
-                    PaymentScreen(),
+                    const PaymentScreen(),
                     SummaryScreen(doctor: widget.doctor),
                   ],
                   onPageChanged: (value) {
@@ -97,13 +97,13 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                 enableDrag: false,
                 builder: (context) => SummaryBottomSheet(doctor: widget.doctor),
               )
-              : SizedBox.shrink(),
+              : const SizedBox.shrink(),
     );
   }
 
   Widget _progressStepper(int index) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 25.h, horizontal: 35.w),
+      padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 35.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

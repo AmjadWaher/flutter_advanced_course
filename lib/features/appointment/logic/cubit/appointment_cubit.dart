@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AppointmentCubit extends Cubit<AppointmentState> {
   final AppointmentRepository _myAppointmentRepository;
   AppointmentCubit(this._myAppointmentRepository)
-    : super(AppointmentState.initial());
+    : super(const AppointmentState.initial());
   List<Appointment> upcoming = [];
   List<Appointment> completed = [];
   List<Appointment> cancelled = [];
@@ -43,7 +43,7 @@ class AppointmentCubit extends Cubit<AppointmentState> {
   }
 
   void emitAppointmentStates() async {
-    emit(AppointmentState.loading());
+    emit(const AppointmentState.loading());
     final response = await _myAppointmentRepository.getAppointmentByPatientId();
 
     switch (response) {
@@ -63,7 +63,7 @@ class AppointmentCubit extends Cubit<AppointmentState> {
   }
 
   void emitCancelAppointment(int appointmentId) async {
-    emit(AppointmentState.loading());
+    emit(const AppointmentState.loading());
     final response = await _myAppointmentRepository.cancelAppointment(
       appointmentId,
     );
@@ -86,7 +86,7 @@ class AppointmentCubit extends Cubit<AppointmentState> {
   }
 
   Future<void> emitRescheduleAppointment(RescheduleRequest request) async {
-    emit(AppointmentState.loading());
+    emit(const AppointmentState.loading());
     final response = await _myAppointmentRepository.rescheduleAppointment(
       request,
     );

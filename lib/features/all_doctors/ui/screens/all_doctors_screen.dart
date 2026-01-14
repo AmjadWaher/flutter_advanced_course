@@ -61,8 +61,8 @@ class AllDoctorsScreen extends StatelessWidget {
                       }
 
                     default:
-                      return Expanded(
-                        child: const Center(child: CircularProgressIndicator()),
+                      return const Expanded(
+                        child: Center(child: CircularProgressIndicator()),
                       );
                   }
                 },

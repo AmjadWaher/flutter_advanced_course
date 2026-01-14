@@ -4,7 +4,9 @@ import 'package:completed_flutter_projects/core/themes/app_colors.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
 import 'package:completed_flutter_projects/core/widgets/booking_details_card.dart';
 import 'package:completed_flutter_projects/core/widgets/doctor_card.dart';
-import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_cubit.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking/booking_cubit.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/payment/payment_cubit.dart';
+import 'package:completed_flutter_projects/features/book_appointment/ui/widgets/payment_method_tile.dart';
 import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +25,6 @@ class SummaryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.read<BookingCubit>().state;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -32,8 +33,8 @@ class SummaryScreen extends StatelessWidget {
         BookingDetailsCard(
           title: 'Date & Time',
           subtitle: getFormattedDateAndTime(
-            state.selectedDate!,
-            state.selectedTime!,
+            context.read<BookingCubit>().state.selectedDate!,
+            context.read<BookingCubit>().state.selectedTime!,
           ),
           icon: 'assets/svgs/calender.svg',
           color: AppColors.mainBlue,
@@ -42,6 +43,14 @@ class SummaryScreen extends StatelessWidget {
         Text('Doctor Information', style: TextStyles.font15DarkBlueBold),
         verticalSpace(8),
         DoctorCard(doctor: doctor, height: 80, width: 80, onTap: () {}),
+        verticalSpace(18),
+        Text('Payment Information', style: TextStyles.font15DarkBlueBold),
+        verticalSpace(8),
+        context.read<PaymentCubit>().state.paymentMethod == 'Cash'
+            ? const PaymentMethodTile.cash()
+            : PaymentMethodTile.card(
+              card: context.read<PaymentCubit>().state.creditCard!,
+            ),
       ],
     );
   }

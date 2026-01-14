@@ -5,10 +5,11 @@ import 'package:completed_flutter_projects/features/all_doctors/logic/cubit/all_
 
 class AllDoctorsCubit extends Cubit<AllDoctorsState> {
   final List<Doctor> _allDoctorsList;
-  AllDoctorsCubit(this._allDoctorsList) : super(AllDoctorsState.initial());
+  AllDoctorsCubit(this._allDoctorsList)
+    : super(const AllDoctorsState.initial());
 
   void emitAllDoctorsBySpecialtyId(int specialtyId) async {
-    emit(AllDoctorsState.loading());
+    emit(const AllDoctorsState.loading());
 
     if (specialtyId == -1) {
       emit(AllDoctorsState.success(_allDoctorsList));
@@ -25,7 +26,7 @@ class AllDoctorsCubit extends Cubit<AllDoctorsState> {
   }
 
   void emitSearchedDoctors(String value, {int? specialtyId}) {
-    emit(AllDoctorsState.loading());
+    emit(const AllDoctorsState.loading());
 
     List<Doctor> filtered = _allDoctorsList;
 

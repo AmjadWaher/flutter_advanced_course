@@ -10,9 +10,7 @@ import 'package:completed_flutter_projects/features/signup/logic/cubit/sign_up_s
 class SignUpCubit extends Cubit<SignUpState> {
   final SignUpRepository _signUpRepository;
 
-  SignUpCubit(
-    this._signUpRepository,
-  ) : super(SignUpState.initial());
+  SignUpCubit(this._signUpRepository) : super(const SignUpState.initial());
 
   final formKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();

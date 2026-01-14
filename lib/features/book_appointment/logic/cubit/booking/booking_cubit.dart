@@ -2,9 +2,9 @@ import 'package:completed_flutter_projects/core/networking/api_result.dart'
     as api_result;
 import 'package:completed_flutter_projects/features/book_appointment/data/models/booking_request.dart';
 import 'package:completed_flutter_projects/features/book_appointment/data/repository/booking_repository.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_state.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking/booking_state.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BookingCubit extends Cubit<BookingState> {
@@ -24,11 +24,11 @@ class BookingCubit extends Cubit<BookingState> {
     emit(state.copyWith(selectedTime: time));
   }
 
-  void selectPayment(String method) {
-    emit(state.copyWith(paymentMethod: method));
-  }
-
-  Future<void> submitBooking(String doctorId, double price) async {
+  Future<void> submitBooking(
+    String doctorId,
+    double price,
+    String paymentMethod,
+  ) async {
     emit(state.copyWith(isLoading: true));
     final response = await _bookingRepository.submitBooking(
       BookingRequest(
@@ -36,21 +36,24 @@ class BookingCubit extends Cubit<BookingState> {
         time: state.selectedTime!,
         date: state.selectedDate!.toIso8601String(),
         price: price,
-        paymentMethod: state.paymentMethod,
+        paymentMethod: paymentMethod,
       ),
     );
 
     switch (response) {
-      case api_result.Success():
+      case api_result.Success(:final data):
         emit(
-          state.copyWith(isLoading: false, isConfirmed: true, isError: false),
+          state.copyWith(
+            isLoading: false,
+            isSuccess: true,
+            appointmentId: data.data.appointmentId,
+          ),
         );
         break;
       case api_result.Failure():
         emit(
           state.copyWith(
             isLoading: false,
-            isConfirmed: false,
             isError: true,
             errorMessage: 'Booking Not Confirmed',
           ),
