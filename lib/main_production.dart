@@ -7,6 +7,7 @@ import 'package:completed_flutter_projects/doc_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +21,11 @@ void main() async {
     ),
   );
   await checkIfLoggedInUser();
+
+  Stripe.publishableKey =
+      "pk_test_51SHSmPCo2yKmmtVvUycz63KcGAShoTd7eviUWgHdjYvk7XBxqmPzvdN2oSeeuUo69mHxgcFwyYooC5SIJTBtQwm000JScihFKc";
+  await Stripe.instance.applySettings();
+
   runApp(DocApp(appRouter: AppRouter()));
 }
 

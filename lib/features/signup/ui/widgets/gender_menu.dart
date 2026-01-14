@@ -19,15 +19,9 @@ class _GenderMenuState extends State<GenderMenu> {
     return DropdownButtonHideUnderline(
       child: DropdownButton2<Gender>(
         isExpanded: true,
-        items: [
-          DropdownMenuItem(
-            value: Gender.male,
-            child: Text('Male'),
-          ),
-          DropdownMenuItem(
-            value: Gender.female,
-            child: Text('Female'),
-          ),
+        items: const [
+          DropdownMenuItem(value: Gender.male, child: Text('Male')),
+          DropdownMenuItem(value: Gender.female, child: Text('Female')),
         ],
         value: context.read<SignUpCubit>().gender,
         onChanged: (value) {
@@ -42,16 +36,12 @@ class _GenderMenuState extends State<GenderMenu> {
           padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: AppColors.snowGray,
-            ),
+            border: Border.all(color: AppColors.snowGray),
             color: AppColors.paleGray,
           ),
         ),
         iconStyleData: const IconStyleData(
-          icon: Icon(
-            Icons.arrow_drop_down,
-          ),
+          icon: Icon(Icons.arrow_drop_down),
           iconSize: 22,
           iconEnabledColor: Colors.black,
         ),

@@ -30,7 +30,7 @@ class SearchAndFilter extends StatelessWidget {
           if (specialty == null)
             IconButton(
               onPressed: () => _showFilterBottomSheet(context),
-              icon: Icon(Icons.filter_list),
+              icon: const Icon(Icons.filter_list),
             ),
         ],
       ),
@@ -53,7 +53,7 @@ class SearchAndFilter extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
             child: SvgPicture.asset(
               'assets/svgs/search_normal.svg',
-              colorFilter: ColorFilter.mode(
+              colorFilter: const ColorFilter.mode(
                 AppColors.silverGray,
                 BlendMode.srcIn,
               ),
@@ -61,7 +61,10 @@ class SearchAndFilter extends StatelessWidget {
           ),
         ),
         onChanged: (value) {
-          context.read<AllDoctorsCubit>().emitSearchedDoctors(value,specialtyId: specialty?.id);
+          context.read<AllDoctorsCubit>().emitSearchedDoctors(
+            value,
+            specialtyId: specialty?.id,
+          );
         },
       ),
     );

@@ -32,8 +32,8 @@ class MyAppointmentScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 2.h),
             child: Column(
               children: [
-                TabBar(
-                  tabs: const [
+                const TabBar(
+                  tabs: [
                     Tab(text: 'Upcoming'),
                     Tab(text: 'Completed'),
                     Tab(text: 'Cancelled'),
@@ -69,7 +69,7 @@ class MyAppointmentScreen extends StatelessWidget {
                         return Center(child: Text(state.error));
                       }
 
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(
                           color: AppColors.mainBlue,
                         ),

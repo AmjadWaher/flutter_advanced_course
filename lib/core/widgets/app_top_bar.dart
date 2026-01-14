@@ -11,22 +11,16 @@ class AppTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Colors.transparent),
+      decoration: const BoxDecoration(color: Colors.transparent),
       child: Padding(
         padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 0, bottom: 10.h),
         child: Row(
           children: [
             _buildBackButton(context),
-            Spacer(),
-            Text(
-              title,
-              style: TextStyles.font18DarkBlueSemiBold,
-            ),
-            Spacer(),
-            SizedBox(
-              width: 40,
-              height: 40,
-            ),
+            const Spacer(),
+            Text(title, style: TextStyles.font18DarkBlueSemiBold),
+            const Spacer(),
+            const SizedBox(width: 40, height: 40),
           ],
         ),
       ),
@@ -39,19 +33,13 @@ class AppTopBar extends StatelessWidget {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: AppColors.snowGray,
-            width: 1,
-          ),
+          border: Border.all(color: AppColors.snowGray, width: 1),
         ),
-        child: Icon(
-          Icons.arrow_back_ios_new,
-          size: 20,
-        ),
+        child: const Icon(Icons.arrow_back_ios_new, size: 20),
       ),
     );
   }

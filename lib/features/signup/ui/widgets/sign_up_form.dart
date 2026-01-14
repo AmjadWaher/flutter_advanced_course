@@ -38,8 +38,9 @@ class _SignUpFormState extends State<SignUpForm> {
       setState(() {
         hasLowerCase = AppRegex.hasLowerCase(passwordController.text);
         hasUpperCase = AppRegex.hasUpperCase(passwordController.text);
-        hasSpecialCharacters =
-            AppRegex.hasSpecialCharacter(passwordController.text);
+        hasSpecialCharacters = AppRegex.hasSpecialCharacter(
+          passwordController.text,
+        );
         hasNumber = AppRegex.hasNumber(passwordController.text);
         hasMinLength = AppRegex.hasMinLength(passwordController.text);
       });
@@ -95,7 +96,7 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           verticalSpace(7),
-          GenderMenu(),
+          const GenderMenu(),
           verticalSpace(7),
           AppTextFormField(
             isObscureText: isPasswordVisible,

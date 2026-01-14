@@ -176,7 +176,7 @@ class UpcomingCard extends StatelessWidget {
             style: TextStyles.font12MainBlueSemiBold,
           ),
         ),
-        Spacer(),
+        const Spacer(),
         ElevatedButton(
           onPressed: onTapReschedule,
           style: ElevatedButton.styleFrom(

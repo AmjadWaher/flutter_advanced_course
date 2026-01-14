@@ -10,9 +10,7 @@ import 'package:completed_flutter_projects/features/home/logic/home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepository _homeRepository;
-  HomeCubit(
-    this._homeRepository,
-  ) : super(HomeState.initial());
+  HomeCubit(this._homeRepository) : super(const HomeState.initial());
 
   void emitSpecialtiesAndDoctorsStates() async {
     final specialtiesResult = await _homeRepository.getAllSpecialties();

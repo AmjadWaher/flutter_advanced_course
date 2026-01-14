@@ -30,7 +30,7 @@ class HomeShimmer extends StatelessWidget {
         Row(
           children: [
             _textShimmer(height: 25, width: 141),
-            Spacer(),
+            const Spacer(),
             _textShimmer(height: 18, width: 39),
           ],
         ),
@@ -38,7 +38,7 @@ class HomeShimmer extends StatelessWidget {
         SizedBox(
           height: 120.h,
           child: ListView(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             children: [
@@ -60,13 +60,13 @@ class HomeShimmer extends StatelessWidget {
         Row(
           children: [
             _textShimmer(height: 25, width: 141),
-            Spacer(),
+            const Spacer(),
             _textShimmer(height: 18, width: 39),
           ],
         ),
         verticalSpace(12),
         ListView(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           children: [
             _doctorCardShimmer(),
@@ -85,9 +85,7 @@ class HomeShimmer extends StatelessWidget {
       padding: EdgeInsetsDirectional.symmetric(horizontal: 8.w, vertical: 5.h),
       child: Column(
         children: [
-          CircleAvatar(
-            radius: 30.r,
-          ),
+          CircleAvatar(radius: 30.r),
           verticalSpace(12),
           _textShimmer(height: 16, width: 45),
         ],

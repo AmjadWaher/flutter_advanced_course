@@ -1,8 +1,9 @@
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/themes/app_colors.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
-import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_cubit.dart';
-import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking_state.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking/booking_cubit.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/booking/booking_state.dart';
+import 'package:completed_flutter_projects/features/book_appointment/logic/cubit/payment/payment_cubit.dart';
 import 'package:completed_flutter_projects/features/home/data/models/doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,9 +16,9 @@ class SummaryBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 280.h,
+      height: 260.h,
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
@@ -49,22 +50,25 @@ class SummaryBottomSheet extends StatelessWidget {
             ),
             verticalSpace(8),
             Text('Payment Info', style: TextStyles.font14DarkBlueSemiBold),
-            verticalSpace(20),
+            verticalSpace(15),
             _paymentInfoRow('Subtotal', doctor.appointPrice.toString()),
             verticalSpace(12),
             _paymentInfoRow('Tax', '0'),
-            verticalSpace(18),
+            verticalSpace(16),
             _paymentInfoRow(
               'Payment Total',
               doctor.appointPrice.toString(),
               isBold: true,
             ),
-            Spacer(),
+            const Spacer(),
             _bookButton(
-              onPressed: () {
-                context.read<BookingCubit>().submitBooking(
+              onPressed: () async {
+                final paymentMethod =
+                    context.read<PaymentCubit>().state.paymentMethod;
+                await context.read<BookingCubit>().submitBooking(
                   doctor.id,
                   doctor.appointPrice,
+                  paymentMethod,
                 );
               },
             ),
@@ -84,7 +88,7 @@ class SummaryBottomSheet extends StatelessWidget {
                   ? TextStyles.font16DarkBlueSemiBold
                   : TextStyles.font14GrayRegular,
         ),
-        Spacer(),
+        const Spacer(),
         Text('\$$value', style: TextStyles.font16DarkBlueSemiBold),
       ],
     );
@@ -109,7 +113,7 @@ class SummaryBottomSheet extends StatelessWidget {
           ),
           child:
               state
-                  ? CircularProgressIndicator(color: Colors.white)
+                  ? const CircularProgressIndicator(color: Colors.white)
                   : Text('Book Now', style: TextStyles.font16WhiteSemiBold),
         );
       },

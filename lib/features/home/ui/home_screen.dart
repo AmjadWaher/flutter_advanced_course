@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
                 const HomeTopBar(),
                 const DoctorBookingCard(),
                 verticalSpace(10),
-                SpecializationsAndDoctorsBlocBuilder(),
+                const SpecializationsAndDoctorsBlocBuilder(),
               ],
             ),
           ),

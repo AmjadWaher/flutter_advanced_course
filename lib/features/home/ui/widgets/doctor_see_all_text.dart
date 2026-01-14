@@ -18,11 +18,8 @@ class DoctorSeeAllText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          'Doctors',
-          style: TextStyles.font18DarkBlueSemiBold,
-        ),
-        Spacer(),
+        Text('Doctors', style: TextStyles.font18DarkBlueSemiBold),
+        const Spacer(),
         TextButton(
           onPressed: () {
             context.pushNamed(
@@ -33,10 +30,7 @@ class DoctorSeeAllText extends StatelessWidget {
               },
             );
           },
-          child: Text(
-            'See All',
-            style: TextStyles.font12MainBlueRegular,
-          ),
+          child: Text('See All', style: TextStyles.font12MainBlueRegular),
         ),
       ],
     );

@@ -15,14 +15,13 @@ class SpecializationsAndDoctorsBlocBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
-      buildWhen: (previous, current) =>
-          current is Error || current is Success || current is Loading,
+      buildWhen:
+          (previous, current) =>
+              current is Error || current is Success || current is Loading,
       builder: (context, state) {
         switch (state) {
           case Error():
-            return Center(
-              child: Text(state.message),
-            );
+            return Center(child: Text(state.message));
 
           case Success():
             return setupSuccess(state);
@@ -35,14 +34,20 @@ class SpecializationsAndDoctorsBlocBuilder extends StatelessWidget {
   }
 
   Widget setupLoading() {
-    return HomeShimmer();
+    return const HomeShimmer();
   }
 
   Widget setupSuccess(Success state) {
     return Column(
       children: [
-        DoctorSpecialitySeeAllText(specialtyList: state.specialtyData, doctorsList: state.doctorData),
-        DoctorSpecialityListView(specialties: state.specialtyData,doctors: state.doctorData,),
+        DoctorSpecialitySeeAllText(
+          specialtyList: state.specialtyData,
+          doctorsList: state.doctorData,
+        ),
+        DoctorSpecialityListView(
+          specialties: state.specialtyData,
+          doctors: state.doctorData,
+        ),
         verticalSpace(10),
         DoctorSeeAllText(
           doctorsList: state.doctorData,

@@ -46,6 +46,11 @@ class DoctorCard extends StatelessWidget {
                 imageUrl: doctor.photo,
                 height: (height ?? 105).h,
                 width: (width ?? 105).w,
+                memCacheWidth: 600,
+                maxWidthDiskCache: 600,
+                errorWidget:
+                    (context, url, error) =>
+                        const Icon(Icons.broken_image, size: 40),
                 fit: BoxFit.cover,
               ),
             ),

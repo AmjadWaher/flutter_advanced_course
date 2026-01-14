@@ -22,7 +22,7 @@ class DateAndTimeScreen extends StatelessWidget {
       children: [
         Text('Select Date', style: TextStyles.font16DarkBlueSemiBold),
         verticalSpace(12),
-        HorizontalDatePicker(),
+        const HorizontalDatePicker(),
         verticalSpace(15),
         Text('Available time', style: TextStyles.font16DarkBlueSemiBold),
         verticalSpace(24),

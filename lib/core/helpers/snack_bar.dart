@@ -11,7 +11,7 @@ SnackBar snackBar({
   Color? backgroundColor,
 }) {
   return SnackBar(
-    duration: Duration(seconds: 4),
+    duration: const Duration(seconds: 4),
     content: Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
@@ -21,26 +21,17 @@ SnackBar snackBar({
       ),
       child: Row(
         children: [
-          Icon(
-            icon ?? Icons.info_outline,
-            color: Colors.white,
-            size: 30,
-          ),
+          Icon(icon ?? Icons.info_outline, color: Colors.white, size: 30),
           horizontalSpace(8),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: TextStyles.font17WhiteSemiBold,
-                ),
+                Text(title, style: TextStyles.font17WhiteSemiBold),
                 verticalSpace(4),
                 Text(
                   content,
-                  style: TextStyles.font14WhiteRegular.copyWith(
-                    height: 1.3,
-                  ),
+                  style: TextStyles.font14WhiteRegular.copyWith(height: 1.3),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
