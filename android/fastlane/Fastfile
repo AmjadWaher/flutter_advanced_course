@@ -11,8 +11,9 @@ platform :android do
       firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
-      testers: "amjadwaher623@gmail.com",
-      release_notes: "Add Payment Feature"
+      # testers: "amjadwaher623@gmail.com",
+      groups: "leader",
+      release_notes: "Update on UI"
     )
   end
 end
