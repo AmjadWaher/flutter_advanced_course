@@ -16,10 +16,13 @@ class PaymentMethodRadio extends StatelessWidget {
       builder: (ctx, state) {
         final cubit = ctx.read<PaymentCubit>();
         return RadioGroup<String>(
-          onChanged: (value) {
+          onChanged: (value) async {
             cubit.selectPaymentMethod(value ?? '');
             if (value == 'Credit Card') {
-              _showCreditCardModal(context, cubit);
+              await _showCreditCardModal(context, cubit);
+              if (cubit.state.paymentIntentId == null) {
+                cubit.selectPaymentMethod('Cash');
+              }
             }
           },
           groupValue: state,
@@ -55,8 +58,11 @@ class PaymentMethodRadio extends StatelessWidget {
     );
   }
 
-  void _showCreditCardModal(BuildContext context, PaymentCubit cubit) {
-    showModalBottomSheet(
+  Future<void> _showCreditCardModal(
+    BuildContext context,
+    PaymentCubit cubit,
+  ) async {
+    await showModalBottomSheet(
       context: context,
       enableDrag: false,
       builder: (_) {

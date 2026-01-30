@@ -37,6 +37,7 @@ class LoginCubit extends Cubit<LoginState> {
       case api_result.Success(:final data):
         {
           await saveUserToken(data.userData!.token);
+          await saveUserData(data.userData!.userName, data.userData!.email);
           emit(LoginState.success(data));
           break;
         }
@@ -45,6 +46,11 @@ class LoginCubit extends Cubit<LoginState> {
         emit(LoginState.error(message: error.apiErrorModel.message ?? ''));
         break;
     }
+  }
+
+  Future<void> saveUserData(String userName, String userEmail) async {
+    await SharedPrefHelper.setData(SharedPrefKeys.userName, userName);
+    await SharedPrefHelper.setData(SharedPrefKeys.userEmail, userEmail);
   }
 
   Future<void> saveUserToken(String token) async {

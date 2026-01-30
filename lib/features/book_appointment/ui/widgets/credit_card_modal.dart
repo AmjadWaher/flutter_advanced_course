@@ -1,5 +1,8 @@
+import 'package:completed_flutter_projects/core/helpers/constants.dart';
 import 'package:completed_flutter_projects/core/helpers/credit_card_icons.dart';
 import 'package:completed_flutter_projects/core/helpers/extensions.dart';
+import 'package:completed_flutter_projects/core/helpers/shared_pref_helper.dart';
+import 'package:completed_flutter_projects/core/helpers/top_message.dart';
 import 'package:completed_flutter_projects/core/helpers/spacing.dart';
 import 'package:completed_flutter_projects/core/themes/app_colors.dart';
 import 'package:completed_flutter_projects/core/themes/styles.dart';
@@ -60,6 +63,22 @@ class CreditCardModal extends StatelessWidget {
             separatorBuilder: (_, _) => verticalSpace(12),
           );
         }
+        if (state.savedCards.isEmpty) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'No payment methods found.',
+                style: TextStyles.font14DarkBlueMedium,
+              ),
+              verticalSpace(5),
+              Text(
+                'Please add a card to complete your booking.',
+                style: TextStyles.font13DarkBlueMedium,
+              ),
+            ],
+          );
+        }
         return ListView.builder(
           itemCount: state.savedCards.length,
           shrinkWrap: true,
@@ -109,11 +128,26 @@ class CreditCardModal extends StatelessWidget {
 
   void _addNewCard(BuildContext context) async {
     try {
+      final userEmail = await SharedPrefHelper.getString(
+        SharedPrefKeys.userEmail,
+      );
+
+      if (!context.mounted) return;
       final clientSecret = await context.read<PaymentCubit>().setupIntent();
       await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
           setupIntentClientSecret: clientSecret,
-          billingDetails: const BillingDetails(email: 'amjad5@gmail.com'),
+          billingDetails: BillingDetails(
+            email: userEmail,
+            address: const Address(
+              city: null,
+              country: 'JO',
+              line1: null,
+              line2: null,
+              postalCode: null,
+              state: null,
+            ),
+          ),
           merchantDisplayName: 'Doc App',
           style: ThemeMode.light,
           appearance: PaymentSheetAppearance(
@@ -134,14 +168,32 @@ class CreditCardModal extends StatelessWidget {
       );
 
       await Stripe.instance.presentPaymentSheet();
+
+      if (!context.mounted) return;
+      showTopMessage(
+        context: context,
+        title: 'Success',
+        content: 'Card added successfully',
+      );
     } on StripeException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.error.message ?? 'Payment cancelled')),
+      if (e.error.code == FailureCode.Canceled) return;
+
+      if (!context.mounted) return;
+
+      showTopMessage(
+        context: context,
+        title: 'Error',
+        content: e.error.message ?? 'Payment failed',
+        isSuccess: false,
       );
     } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Something went wrong')));
+      if (!context.mounted) return;
+      showTopMessage(
+        context: context,
+        title: 'Error',
+        content: 'Something went wrong',
+        isSuccess: false,
+      );
     }
   }
 

@@ -22,9 +22,9 @@ class DoctorSpecialityListView extends StatelessWidget {
     return SizedBox(
       height: 100.h,
       child: ListView.builder(
-        shrinkWrap: true,
         itemCount: specialties.length,
         scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         itemBuilder: (context, index) {
           final specialty = specialties[index];
           return Padding(
