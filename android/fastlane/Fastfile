@@ -13,7 +13,7 @@ platform :android do
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       # testers: "amjadwaher623@gmail.com",
       groups: "leader",
-      release_notes: "Update on UI"
+      release_notes: "Save User Data & Improve Memory Performance"
     )
   end
 end
