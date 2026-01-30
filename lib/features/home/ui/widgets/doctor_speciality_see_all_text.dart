@@ -16,23 +16,26 @@ class DoctorSpecialitySeeAllText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text('Doctor Speciality', style: TextStyles.font18DarkBlueSemiBold),
-        const Spacer(),
-        TextButton(
-          onPressed: () {
-            context.pushNamed(
-              Routes.doctorSpecialtyScreen,
-              arguments: {
-                'specialtiesList': specialtyList,
-                'doctorsList': doctorsList,
-              },
-            );
-          },
-          child: Text('See All', style: TextStyles.font12MainBlueRegular),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      child: Row(
+        children: [
+          Text('Doctor Speciality', style: TextStyles.font18DarkBlueSemiBold),
+          const Spacer(),
+          TextButton(
+            onPressed: () {
+              context.pushNamed(
+                Routes.doctorSpecialtyScreen,
+                arguments: {
+                  'specialtiesList': specialtyList,
+                  'doctorsList': doctorsList,
+                },
+              );
+            },
+            child: Text('See All', style: TextStyles.font12MainBlueRegular),
+          ),
+        ],
+      ),
     );
   }
 }

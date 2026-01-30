@@ -9,16 +9,13 @@ class DoctorListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 3.h),
-      itemCount: doctors.length,
-      itemBuilder: (context, index) {
-        return DoctorCard(
-          doctor: doctors[index],
-        );
-      },
+    return SliverPadding(
+      padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 2.h),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate((context, index) {
+          return DoctorCard(doctor: doctors[index]);
+        }, childCount: doctors.length),
+      ),
     );
   }
 }

@@ -103,6 +103,12 @@ class TextStyles {
     color: AppColors.mainBlue,
   );
 
+  static TextStyle font13DarkBlueMedium = TextStyle(
+    fontSize: 13.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: AppColors.darkBlue,
+  );
+
   static TextStyle font13NeutralGrayRegular = TextStyle(
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.regular,

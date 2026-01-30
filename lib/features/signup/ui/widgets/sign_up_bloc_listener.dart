@@ -55,13 +55,8 @@ class SignUpBlocListener extends StatelessWidget {
   void setupErrorState(BuildContext context, String message) {
     context.pop();
     ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      snackBar(
-        title: 'Error Occurred',
-        content: message,
-        backgroundColor: Colors.red,
-        icon: Icons.error_outline,
-      ),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(snackBar(title: 'Error Occurred', content: message));
   }
 }

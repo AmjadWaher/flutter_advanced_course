@@ -21,7 +21,9 @@ class SpecializationsAndDoctorsBlocBuilder extends StatelessWidget {
       builder: (context, state) {
         switch (state) {
           case Error():
-            return Center(child: Text(state.message));
+            return SliverToBoxAdapter(
+              child: Center(child: Text(state.message)),
+            );
 
           case Success():
             return setupSuccess(state);
@@ -34,24 +36,30 @@ class SpecializationsAndDoctorsBlocBuilder extends StatelessWidget {
   }
 
   Widget setupLoading() {
-    return const HomeShimmer();
+    return const SliverToBoxAdapter(child: HomeShimmer());
   }
 
   Widget setupSuccess(Success state) {
-    return Column(
-      children: [
-        DoctorSpecialitySeeAllText(
-          specialtyList: state.specialtyData,
-          doctorsList: state.doctorData,
+    return SliverMainAxisGroup(
+      slivers: [
+        SliverToBoxAdapter(
+          child: DoctorSpecialitySeeAllText(
+            specialtyList: state.specialtyData,
+            doctorsList: state.doctorData,
+          ),
         ),
-        DoctorSpecialityListView(
-          specialties: state.specialtyData,
-          doctors: state.doctorData,
+        SliverToBoxAdapter(
+          child: DoctorSpecialityListView(
+            specialties: state.specialtyData,
+            doctors: state.doctorData,
+          ),
         ),
-        verticalSpace(10),
-        DoctorSeeAllText(
-          doctorsList: state.doctorData,
-          specialtyList: state.specialtyData,
+        SliverToBoxAdapter(child: verticalSpace(10)),
+        SliverToBoxAdapter(
+          child: DoctorSeeAllText(
+            doctorsList: state.doctorData,
+            specialtyList: state.specialtyData,
+          ),
         ),
         DoctorListView(doctors: state.doctorData),
       ],

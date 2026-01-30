@@ -5,13 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 SnackBar snackBar({
-  required String title,
+  String? title,
   required String content,
   IconData? icon,
+  EdgeInsetsGeometry? margin,
+  EdgeInsetsGeometry? padding,
   Color? backgroundColor,
 }) {
   return SnackBar(
     duration: const Duration(seconds: 4),
+    margin: margin,
+    padding: padding,
     content: Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
@@ -27,14 +31,16 @@ SnackBar snackBar({
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: TextStyles.font17WhiteSemiBold),
+                if (title != null)
+                  Text(title, style: TextStyles.font17WhiteSemiBold),
                 verticalSpace(4),
-                Text(
-                  content,
-                  style: TextStyles.font14WhiteRegular.copyWith(height: 1.3),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                ),
+                if (title != null)
+                  Text(
+                    content,
+                    style: TextStyles.font14WhiteRegular.copyWith(height: 1.3),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
               ],
             ),
           ),
