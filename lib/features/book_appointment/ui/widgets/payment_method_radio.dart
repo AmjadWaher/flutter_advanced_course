@@ -20,7 +20,7 @@ class PaymentMethodRadio extends StatelessWidget {
             cubit.selectPaymentMethod(value ?? '');
             if (value == 'Credit Card') {
               await _showCreditCardModal(context, cubit);
-              if (cubit.state.paymentIntentId == null) {
+              if (cubit.state.creditCard == null) {
                 cubit.selectPaymentMethod('Cash');
               }
             }
