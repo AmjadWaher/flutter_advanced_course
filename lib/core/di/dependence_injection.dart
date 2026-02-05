@@ -9,6 +9,8 @@ import 'package:completed_flutter_projects/features/login/data/repository/login_
 import 'package:completed_flutter_projects/features/login/logic/cubit/login_cubit.dart';
 import 'package:completed_flutter_projects/features/appointment/data/api/appointment_api_service.dart';
 import 'package:completed_flutter_projects/features/appointment/data/repository/appointment_repository.dart';
+import 'package:completed_flutter_projects/features/profile/data/api/profile_api_service.dart';
+import 'package:completed_flutter_projects/features/profile/data/repository/profile_repository.dart';
 import 'package:completed_flutter_projects/features/signup/data/repository/sign_up_repository.dart';
 import 'package:completed_flutter_projects/features/signup/logic/cubit/sign_up_cubit.dart';
 import 'package:dio/dio.dart';
@@ -50,5 +52,11 @@ Future<void> setUpGetIt() async {
   );
   getIt.registerLazySingleton<AppointmentRepository>(
     () => AppointmentRepository(getIt()),
+  );
+
+  // Profile
+  getIt.registerLazySingleton<ProfileApiService>(() => ProfileApiService(dio));
+  getIt.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepository(getIt()),
   );
 }
