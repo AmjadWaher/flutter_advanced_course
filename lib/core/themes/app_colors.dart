@@ -18,4 +18,5 @@ class AppColors {
   static const Color limeGreen = Color(0xFF22C55E);
   static const Color coralRed = Color(0xFFFF4C5E);
   static const Color mediumSeashell = Color(0xFFF1F1F1);
+  static const Color darkGray = Color(0xFF121212);
 }

@@ -3,8 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
-class SavedCardShimmer extends StatelessWidget {
-  const SavedCardShimmer({super.key});
+class CreditCardShimmer extends StatelessWidget {
+  const CreditCardShimmer({
+    super.key,
+    this.iconHeight,
+    this.iconWidth,
+    this.titleHeight,
+    this.titleWidth,
+    this.numberHeight,
+    this.numberWidth,
+  });
+
+  final double? iconHeight;
+  final double? iconWidth;
+  final double? titleHeight;
+  final double? titleWidth;
+  final double? numberHeight;
+  final double? numberWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +33,8 @@ class SavedCardShimmer extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  height: 25,
-                  width: 40,
+                  height: (iconHeight ?? 25).h,
+                  width: (iconWidth ?? 40).w,
                   decoration: BoxDecoration(
                     color: Colors.grey,
                     borderRadius: BorderRadius.circular(2),
@@ -30,8 +45,8 @@ class SavedCardShimmer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      height: 8,
-                      width: 50,
+                      height: (titleHeight ?? 8).h,
+                      width: (titleWidth ?? 50).w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
@@ -39,8 +54,8 @@ class SavedCardShimmer extends StatelessWidget {
                     ),
                     verticalSpace(10),
                     Container(
-                      height: 5,
-                      width: 110,
+                      height: (numberHeight ?? 5).h,
+                      width: (numberWidth ?? 110).w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white,

@@ -2,6 +2,7 @@ import 'package:completed_flutter_projects/core/networking/api_constants.dart';
 import 'package:completed_flutter_projects/features/book_appointment/data/api/booking_api_constants.dart';
 import 'package:completed_flutter_projects/features/book_appointment/data/models/booking_request.dart';
 import 'package:completed_flutter_projects/features/book_appointment/data/models/booking_response.dart';
+import 'package:completed_flutter_projects/features/book_appointment/data/models/delete_card_response.dart';
 import 'package:completed_flutter_projects/features/book_appointment/data/models/pay_cash_response.dart';
 import 'package:completed_flutter_projects/features/book_appointment/data/models/payment_request.dart';
 import 'package:completed_flutter_projects/features/book_appointment/data/models/payment_response.dart';
@@ -30,6 +31,11 @@ abstract class BookingApiService {
 
   @POST('${BookingApiConstants.payCash}/{appointmentId}')
   Future<PayCashResponse> payCash(@Path('appointmentId') int appointmentId);
+
+  @DELETE('${BookingApiConstants.deleteCard}/{paymentMethodId}')
+  Future<DeleteCardResponse> deleteCard(
+    @Path('paymentMethodId') String paymentMethodId,
+  );
 
   @GET(BookingApiConstants.savedCards)
   Future<SavedCardsResponse> savedCards();

@@ -1,3 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:completed_flutter_projects/core/helpers/constants.dart';
+import 'package:completed_flutter_projects/core/helpers/shared_pref_helper.dart';
 import 'package:completed_flutter_projects/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +14,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
     required this.pageIndex,
     required this.onTap,
   });
+
+  Future<String> get getProfileImage async =>
+      await SharedPrefHelper.getString(SharedPrefKeys.userImage);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +37,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             selected: pageIndex == 1,
             onTap: () => onTap(1),
           ),
-          _navigationProfile(onTap: () => onTap(2)),
+          _navigationProfile(onTap: () => onTap(2), isSelected: pageIndex == 2),
         ],
       ),
     );
@@ -56,20 +62,39 @@ class CustomBottomNavigationBar extends StatelessWidget {
     );
   }
 
-  Widget _navigationProfile({required Function()? onTap}) {
+  Widget _navigationProfile({
+    required Function()? onTap,
+    required bool isSelected,
+  }) {
     return InkWell(
       onTap: onTap,
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
-      child: Container(
-        height: 27.h,
-        width: 27.w,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          image: const DecorationImage(
-            image: AssetImage('assets/images/male_face_avatar.png'),
-          ),
-        ),
+      child: FutureBuilder(
+        future: getProfileImage,
+        builder: (context, snapshot) {
+          final image = snapshot.data;
+          return Container(
+            height: 27.h,
+            width: 27.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              border: BoxBorder.all(
+                color: isSelected ? AppColors.mainBlue : Colors.white,
+              ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadiusGeometry.circular(100),
+              child:
+                  image != null && image.isNotEmpty
+                      ? CachedNetworkImage(imageUrl: image, fit: BoxFit.cover)
+                      : Image.asset(
+                        'assets/images/male_face_avatar.png',
+                        fit: BoxFit.cover,
+                      ),
+            ),
+          );
+        },
       ),
     );
   }

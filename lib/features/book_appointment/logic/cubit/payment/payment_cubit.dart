@@ -64,7 +64,14 @@ class PaymentCubit extends Cubit<PaymentState> {
     final response = await _paymentRepository.savedCards();
     switch (response) {
       case api_result.Success(:final data):
-        emit(state.copyWith(savedCards: data.data, isLoading: false));
+        emit(
+          state.copyWith(
+            savedCards: data.data,
+            isLoading: false,
+            isSuccess: true,
+            isError: false,
+          ),
+        );
     }
   }
 
@@ -81,6 +88,43 @@ class PaymentCubit extends Cubit<PaymentState> {
             errorMessage: error.apiErrorModel.message,
           ),
         );
+    }
+  }
+
+  void deleteCard(String paymentMethodId) async {
+    emit(state.copyWith(isLoading: true, isSuccess: false, isError: false));
+    try {
+      final response = await _paymentRepository.deleteCard(paymentMethodId);
+      switch (response) {
+        case api_result.Success():
+          final updatedList = List<CreditCard>.from(state.savedCards)
+            ..removeWhere((card) => card.id == paymentMethodId);
+          emit(
+            state.copyWith(
+              isSuccess: true,
+              isLoading: false,
+              isError: false,
+              savedCards: updatedList,
+            ),
+          );
+        case api_result.Failure(:final error):
+          emit(
+            state.copyWith(
+              isLoading: false,
+              isError: true,
+              isSuccess: false,
+              errorMessage: error.apiErrorModel.message,
+            ),
+          );
+      }
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isLoading: false,
+          isError: true,
+          errorMessage: e.toString(),
+        ),
+      );
     }
   }
 }

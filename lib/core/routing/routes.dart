@@ -9,4 +9,5 @@ class Routes {
   static const String doctorDetailsScreen = '/doctorDetailsScreen';
   static const String bookAppointmentScreen = '/bookAppointmentScreen';
   static const String bookingDetailsScreen = '/bookingDetailsScreen';
+  static const String personalInformationScreen = '/personalInformationScreen';
 }

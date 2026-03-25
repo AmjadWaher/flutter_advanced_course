@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 class ProfileRequest {
-  File photo;
-  String userName;
-  String phoneNumber;
+  File? photo;
+  String? userName;
+  String? phoneNumber;
   ProfileRequest({
     required this.photo,
     required this.userName,
@@ -17,10 +17,13 @@ class ProfileRequest {
     return FormData.fromMap({
       "userName": userName,
       "phoneNumber": phoneNumber,
-      "image": MultipartFile.fromFileSync(
-        photo.path,
-        filename: photo.path.split('/').last,
-      ),
+      "photo":
+          photo != null
+              ? MultipartFile.fromFileSync(
+                photo!.path,
+                filename: photo!.path.split('/').last,
+              )
+              : null,
     });
   }
 }

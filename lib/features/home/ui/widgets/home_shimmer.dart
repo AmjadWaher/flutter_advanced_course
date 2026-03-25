@@ -27,27 +27,28 @@ class HomeShimmer extends StatelessWidget {
   Widget _buildSpecilatyListShimmer() {
     return Column(
       children: [
-        Row(
-          children: [
-            _textShimmer(height: 25, width: 141),
-            const Spacer(),
-            _textShimmer(height: 18, width: 39),
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          child: Row(
+            children: [
+              _textShimmer(height: 25, width: 141),
+              const Spacer(),
+              _textShimmer(height: 18, width: 39),
+            ],
+          ),
         ),
         verticalSpace(12),
         SizedBox(
           height: 120.h,
-          child: ListView(
+          child: ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
-            children: [
-              _specialtyCardShimmer(),
-              _specialtyCardShimmer(),
-              _specialtyCardShimmer(),
-              _specialtyCardShimmer(),
-              _specialtyCardShimmer(),
-            ],
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            itemCount: 5,
+            itemBuilder: (context, index) => _specialtyCardShimmer(),
+            separatorBuilder:
+                (context, index) => horizontalSpace(index == 4 ? 0 : 12),
           ),
         ),
       ],
@@ -57,24 +58,24 @@ class HomeShimmer extends StatelessWidget {
   Widget _buildDoctorListShimmer() {
     return Column(
       children: [
-        Row(
-          children: [
-            _textShimmer(height: 25, width: 141),
-            const Spacer(),
-            _textShimmer(height: 18, width: 39),
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            children: [
+              _textShimmer(height: 25, width: 141),
+              const Spacer(),
+              _textShimmer(height: 18, width: 39),
+            ],
+          ),
         ),
         verticalSpace(12),
-        ListView(
+        ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          children: [
-            _doctorCardShimmer(),
-            _doctorCardShimmer(),
-            _doctorCardShimmer(),
-            _doctorCardShimmer(),
-            _doctorCardShimmer(),
-          ],
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 2.h),
+          itemBuilder: (context, index) => _doctorCardShimmer(),
+          itemCount: 5,
+          separatorBuilder: (context, index) => const SizedBox.shrink(),
         ),
       ],
     );
