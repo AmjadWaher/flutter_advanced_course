@@ -3,6 +3,8 @@ import 'package:completed_flutter_projects/features/appointment/logic/cubit/appo
 import 'package:completed_flutter_projects/features/appointment/ui/screens/my_appointment_screen.dart';
 import 'package:completed_flutter_projects/features/home/logic/home_cubit.dart';
 import 'package:completed_flutter_projects/features/home/ui/home_screen.dart';
+import 'package:completed_flutter_projects/features/profile/logic/cubit/profile_cubit.dart';
+import 'package:completed_flutter_projects/features/profile/ui/screens/profile_screen.dart';
 import 'package:completed_flutter_projects/main_home/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +39,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       ),
       _buildAppointmentsScreen(),
 
-      // const ProfileScreen(),
+      BlocProvider(
+        create: (context) => ProfileCubit(getIt())..getPersonalInformation(),
+        child: const ProfileScreen(),
+      ),
     ];
   }
 

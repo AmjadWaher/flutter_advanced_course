@@ -141,7 +141,7 @@ class UpcomingCard extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.coralRed,
+                        backgroundColor: AppColors.mainBlue,
                       ),
                       child: Text(
                         'Cancel',

@@ -204,6 +204,11 @@ class TextStyles {
     color: Colors.grey[600],
     fontWeight: FontWeightHelper.regular,
   );
+  static TextStyle font14DarkGrayRegularWith40perAlpha = TextStyle(
+    fontSize: 14.sp,
+    color: AppColors.darkGray.withAlpha(102),
+    fontWeight: FontWeightHelper.regular,
+  );
 
   // ------------ 15 sp ------------
 
@@ -310,6 +315,11 @@ class TextStyles {
     color: AppColors.darkBlue,
     fontWeight: FontWeightHelper.semiBold,
   );
+  static TextStyle font18WhitSemiBold = TextStyle(
+    fontSize: 18.sp,
+    color: Colors.white,
+    fontWeight: FontWeightHelper.semiBold,
+  );
 
   // ------------ 20 sp ------------
 
@@ -317,6 +327,11 @@ class TextStyles {
     fontSize: 20.sp,
     color: AppColors.darkBlue,
     fontWeight: FontWeightHelper.medium,
+  );
+  static TextStyle font20DarkBlueSemiBold = TextStyle(
+    fontSize: 20.sp,
+    color: AppColors.darkBlue,
+    fontWeight: FontWeightHelper.semiBold,
   );
 
   // ------------ 24 sp ------------

@@ -15,6 +15,8 @@ import 'package:completed_flutter_projects/features/login/logic/cubit/login_cubi
 import 'package:completed_flutter_projects/features/login/ui/screens/login_screen.dart';
 
 import 'package:completed_flutter_projects/features/onboarding/onboarding_screen.dart';
+import 'package:completed_flutter_projects/features/profile/logic/cubit/profile_cubit.dart';
+import 'package:completed_flutter_projects/features/profile/ui/screens/personal_information_screen.dart';
 import 'package:completed_flutter_projects/features/signup/logic/cubit/sign_up_cubit.dart';
 import 'package:completed_flutter_projects/features/signup/ui/screens/sign_up_screen.dart';
 
@@ -95,6 +97,14 @@ class AppRouter {
                 doctor: args['doctor'] as Doctor,
                 bookingState: args['bookingState'] as BookingState,
                 paymentState: args['paymentState'] as PaymentState,
+              ),
+        );
+      case Routes.personalInformationScreen:
+        return MaterialPageRoute(
+          builder:
+              (context) => BlocProvider.value(
+                value: context.read<ProfileCubit>(),
+                child: const PersonalInformationScreen(),
               ),
         );
       default:

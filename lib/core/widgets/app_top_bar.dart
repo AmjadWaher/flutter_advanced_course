@@ -5,24 +5,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTopBar extends StatelessWidget {
-  const AppTopBar({super.key, required this.title});
+  const AppTopBar({
+    super.key,
+    required this.title,
+    this.style,
+    this.onlyTitle = false,
+  });
   final String title;
+  final bool onlyTitle;
+  final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(color: Colors.transparent),
       child: Padding(
-        padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 0, bottom: 10.h),
-        child: Row(
-          children: [
-            _buildBackButton(context),
-            const Spacer(),
-            Text(title, style: TextStyles.font18DarkBlueSemiBold),
-            const Spacer(),
-            const SizedBox(width: 40, height: 40),
-          ],
+        padding: EdgeInsets.only(
+          left: 16.w,
+          right: 16.w,
+          top: onlyTitle ? 9 : 0,
+          bottom: 10.h,
         ),
+        child:
+            onlyTitle
+                ? Center(
+                  child: Text(
+                    title,
+                    style: style ?? TextStyles.font18DarkBlueSemiBold,
+                  ),
+                )
+                : Row(
+                  children: [
+                    _buildBackButton(context),
+                    const Spacer(),
+                    Text(title, style: TextStyles.font18DarkBlueSemiBold),
+                    const Spacer(),
+                    const SizedBox(width: 40, height: 40),
+                  ],
+                ),
       ),
     );
   }

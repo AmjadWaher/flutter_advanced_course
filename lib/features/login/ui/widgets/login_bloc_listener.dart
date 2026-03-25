@@ -1,4 +1,3 @@
-
 import 'package:completed_flutter_projects/core/helpers/extensions.dart';
 import 'package:completed_flutter_projects/core/routing/routes.dart';
 import 'package:completed_flutter_projects/core/themes/app_colors.dart';
@@ -14,24 +13,24 @@ class LoginBlocListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
-      listenWhen: (previous, current) =>
-          current is Loading || current is Success || current is Error,
+      listenWhen:
+          (previous, current) =>
+              current is Loading || current is Success || current is Error,
       listener: (context, state) {
         switch (state) {
           case Loading():
             showDialog(
               context: context,
-              builder: (context) => const Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.mainBlue,
-                ),
-              ),
+              builder:
+                  (context) => const Center(
+                    child: CircularProgressIndicator(color: AppColors.mainBlue),
+                  ),
             );
             break;
 
           case Success(:final data):
             context.pop();
-            context.pushNamed(Routes.mainHomeScreen);
+            context.pushReplacementNamed(Routes.mainHomeScreen);
             break;
 
           case Error(:final message):
@@ -50,30 +49,24 @@ class LoginBlocListener extends StatelessWidget {
     context.pop();
     showDialog(
       context: context,
-      builder: (context) => Center(
-        child: AlertDialog(
-          icon: const Icon(
-            Icons.error,
-            color: Colors.red,
-            size: 32,
-          ),
-          content: Text(
-            message,
-            style: TextStyles.font15DarkBlueMedium,
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                context.pop();
-              },
-              child: Text(
-                'Got it',
-                style: TextStyles.font14MainBlueSemiBold,
-              ),
+      builder:
+          (context) => Center(
+            child: AlertDialog(
+              icon: const Icon(Icons.error, color: Colors.red, size: 32),
+              content: Text(message, style: TextStyles.font15DarkBlueMedium),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    context.pop();
+                  },
+                  child: Text(
+                    'Got it',
+                    style: TextStyles.font14MainBlueSemiBold,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 }
